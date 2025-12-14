@@ -6,7 +6,10 @@
 #include "../include/User.h"
 #include<string>
 #include<cstring>
-Database<char[35],User,1000> db;
+Database<std::array<char,30>,User,1000> acc_db;
+void Account::Initialize() {
+    acc_db.Initialize(index_filename,filename);
+}
 bool Account::ValidCheck(std::string& s) {
     if (s.size() > 30) return false;
     else {
@@ -23,7 +26,8 @@ bool Account::ValidCheck(std::string& s) {
     }
 }
 void Account::AddNewAccount(User& user) {
-    db.Insert(user.UserID,user);
+    acc_db.Insert(user.UserID,user);
+    //std::cerr << db.CheckExist(user.UserID) << "\n";
 }
 void Account::LogIn(User user) {
     LogInStack.push_back(user);
@@ -31,10 +35,10 @@ void Account::LogIn(User user) {
     login_number++;
 }
 User Account::GetUser(std::string id) {
-    char tmp_id[35];
-    memset(tmp_id,0,35);
-    strcpy(tmp_id, id.c_str());
-    return db.GetValue(tmp_id);
+    std::array<char,30> user_id{};
+    int cnt = 0;
+    while (id[cnt] != '\0') user_id[cnt] = id[cnt],cnt++;
+    return acc_db.GetValue(user_id);
 }
 bool Account::LogOut() {
     if (LogInStack.empty()) return false;
@@ -45,23 +49,26 @@ bool Account::LogOut() {
     }
 }
 bool Account::FindUser(std::string id) {
-    char tmp_id[35];
-    memset(tmp_id,0,35);
-    strcpy(tmp_id, id.c_str());
-    return db.CheckExist(tmp_id);
+    std::array<char,30> user_id{};
+    int cnt = 0;
+    while (id[cnt] != '\0') user_id[cnt] = id[cnt],cnt++;
+    return acc_db.CheckExist(user_id);
 }
 User Account::CurrentUser() {
     return LogInStack.back();
 }
 bool Account::HasLogIn(std::string id) {
+    std::array<char,30> user_id{};
+    int cnt = 0;
+    while (id[cnt] != '\0') user_id[cnt] = id[cnt],cnt++;
     for (auto it = LogInStack.begin(); it != LogInStack.end(); it++) {
-        if (it->UserID == id) return true;
+        if (it->UserID == user_id) return true;
     }
     return false;
 }
 void Account::ChangeInfo(User user) {
-
+    acc_db.ChangeInfo(user.UserID,user);
 }
 void Account::DeleteAccount(User user) {
-    db.Delete(user.UserID,user);
+    acc_db.Delete(user.UserID,user);
 }

@@ -11,6 +11,7 @@ class User;
 class Book;
 class Account {
 public:
+    void Initialize();
     bool ValidCheck(std::string& s);// 检查UserID，Password是否合法
     void AddNewAccount(User& user);
     void LogIn(User user);

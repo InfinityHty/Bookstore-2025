@@ -16,4 +16,5 @@ add_executable(Bookstore_2025
         include/Repository.h
         src/Repository.cpp
         src/Account.cpp
-        前置作业/最终版本.cpp)
+        include/OperationLog.h
+        src/Book.cpp)

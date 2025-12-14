@@ -209,7 +209,7 @@ public:
                 for (int i = 0; i < tmp.body_size; i++) {
                     if (cur[i].index == index) {
                         has_value = true;
-                        std::cout << cur[i].value << " ";
+                        std::cout << cur[i].value;
                     }
                 }
             }
@@ -217,9 +217,9 @@ public:
             index_file.seekg(tmp.next_node,std::ios::beg);
         }
         if (!has_value) {
-            std::cout << "null";
+            //std::cout << "null";
         }
-        std::cout << "\n";
+        //std::cout << "\n";
         index_file.close();
         file.close();
     }
@@ -293,6 +293,8 @@ public:
                 file.read(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
                 for (int j = 0; j < tmp.body_size; j++) {
                     if (cur[j].index == index) {
+                        index_file.close();
+                        file.close();
                         return true;
                     }
                 }
@@ -300,7 +302,83 @@ public:
             if (tmp.next_node == -1) break;
             index_file.seekg(tmp.next_node);
         }
+        index_file.close();
+        file.close();
         return false;
+    }
+    // 适用于账户管理系统修改密码 书籍管理系统修改除ISBN之外的书籍信息
+    void ChangeInfo(T1 index,T2 new_value) {
+        index_file.open(index_file_name,std::ios::binary | std::ios::in | std::ios::out);
+        file.open(file_name,std::ios::binary | std::ios::in | std::ios::out);
+        index_file.seekg(0,std::ios::beg);
+        Node tmp;
+        for (int i = 0; i < node_number; i++) {
+            index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            if (index < tmp.min_key) break;
+            if (index >= tmp.min_key && index <= tmp.max_key) {
+                file.seekg(tmp.content_pos);
+                Content cur[block_size + 1];
+                file.read(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+                for (int j = 0; j < tmp.body_size; j++) {
+                    if (cur[j].index == index) {
+                        cur[j].value = new_value;
+                        break;
+                    }
+                }
+                file.seekp(tmp.content_pos);
+                file.write(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+                break;
+            }
+            if (tmp.next_node == -1) break;
+            index_file.seekg(tmp.next_node);
+        }
+        index_file.close();
+        file.close();
+    }
+    // 适用于书籍管理系统
+    // 显示所有书籍
+    void ShowAll() {
+        index_file.open(index_file_name,std::ios::binary | std::ios::in);
+        file.open(file_name,std::ios::binary | std::ios::in);
+        index_file.seekg(0,std::ios::beg);
+        Node tmp;
+        for (int i = 0; i < node_number; i++) {
+            index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            file.seekg(tmp.content_pos);
+            Content cur[block_size + 1];
+            file.read(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+            for (int j = 0; j < tmp.body_size; j++) {
+                std::cout << cur[j].value;
+            }
+            if (tmp.next_node == -1) break;
+            index_file.seekg(tmp.next_node);
+        }
+        index_file.close();
+        file.close();
+    }
+    // 返回包含所有符合待查询index的value组成的vector
+    std::vector<T2> ReturnValues(T1 index) {
+        index_file.open(index_file_name,std::ios::binary | std::ios::in);
+        file.open(file_name,std::ios::binary | std::ios::in);
+        std::vector<T2> corresponding;
+        Node tmp;
+        for (int i = 0; i < node_number; i++) {
+            index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            if (index < tmp.min_key) break;
+            if (index >= tmp.min_key && index <= tmp.max_key) {
+                file.seekg(tmp.content_pos);
+                Content cur[block_size + 1];
+                file.read(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+                for (int j = 0; j < tmp.body_size; j++) {
+                    if (cur[j].index == index) corresponding.push_back(cur[j].value);
+                }
+            }
+            if (tmp.next_node == -1) break;
+            index_file.seekg(tmp.next_node);
+        }
+        index_file.close();
+        file.close();
+        return corresponding;
     }
 };
 #endif //NEEDANALYSIS_MD_DATAMAP_H
