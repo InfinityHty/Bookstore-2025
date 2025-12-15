@@ -6,6 +6,7 @@
 #define BOOKSTORE_2025_REPOSITORY_H
 #include "Book.h"
 #include<string>
+#include<vector>
 class Repository {
 public:
     void Initialize();
@@ -15,11 +16,13 @@ public:
     Book GetABook(std::string isbn);
     void AddNewBook(Book& book);
     float ComputeCost(std::string cost);
-    void Parser(std::string line,std::string& type,std::string& index);
+    void Parser(std::string line,std::string& type,std::vector<std::string>& index);
     void DeleteBook(Book& book);
     void ShowAll();
     void PrintExistingBooks(std::string& type,std::string& index);
-    bool MultipleKeywords(std::string keyword);
+    std::vector<std::string> MultipleKeywords(std::array<char,60> keyword);
+    bool RepeatKeywords(std::vector<std::string> keywords);
+    std::array<char,60> GetKeywords(std::string lines);
 private:
     std::string filename_isbn = "isbn.txt";
     std::string index_isbn = "index_isbn.txt";

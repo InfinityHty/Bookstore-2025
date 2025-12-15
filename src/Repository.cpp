@@ -5,6 +5,8 @@
 #include "../include/DataMap.h"
 #include "../include/Book.h"
 #include<vector>
+#include<cmath>
+#include<set>
 Database<std::array<char,20>,Book,1000> isbn_db;// 存放ISBN和Book结构体的映射
 Database<std::array<char,60>,std::array<char,20>,1000> name_isbn_map;// BookName到ISBN的映射
 Database<std::array<char,60>,std::array<char,20>,1000> author_isbn_map;// Author到ISBN的映射
@@ -43,34 +45,81 @@ void Repository::AddNewBook(Book& book) {
     isbn_db.Insert(book.ISBN,book);
     name_isbn_map.Insert(book.BookName,book.ISBN);
     author_isbn_map.Insert(book.Author,book.ISBN);
-    keyword_isbn_map.Insert(book.Keyword,book.ISBN);
+    // 每个keyword分别插入一遍
+    std::vector<std::string> keywords = MultipleKeywords(book.Keyword);
+    for (auto it = keywords.begin(); it != keywords.end(); it++) {
+        int cnt = 0;
+        std::array<char,60> keyword_{};
+        while ((*it)[cnt] != '\0') keyword_[cnt] = (*it)[cnt],cnt++;
+        keyword_isbn_map.Insert(keyword_,book.ISBN);
+    }
+    //keyword_isbn_map.Insert(book.Keyword,book.ISBN);
 }
 float Repository::ComputeCost(std::string cost) {
-
+    int dot_pos = 0,cnt = 0;
+    long long price = 0;
+    while (cost[cnt] != '\0') {
+        if (cost[cnt] == '.') {
+            dot_pos = cost.size() - 1 - cnt;
+            cnt++;
+        }
+        else {
+            price = price * 10 + (cost[cnt] - '0');
+            cnt++;
+        }
+    }
+    float ans = price * 1.0 / pow(10,dot_pos);
+    return ans;
 }
-void Repository::Parser(std::string line,std::string& type,std::string& index) {
+// 拆分
+void Repository::Parser(std::string line,std::string& type,std::vector<std::string>& index) {
     if (line[0] == '-') {
-        int cnt = 1,prev_len = 0;
-        while (line[cnt] != '=') type[cnt] = line[cnt],cnt++;
+        int cnt = 1;
+        //std::cerr << line << "\n";
+        //type = line;
+        while (line[cnt] != '=') {
+            type.push_back(line[cnt]);
+            cnt++;
+        }
         if (type == "ISBN") {
             cnt++;
-            prev_len = cnt;
-            while (line[cnt] != '\0') index[cnt - prev_len] = line[cnt],cnt++;
+            std::string tmp;
+            while (line[cnt] != '\0') tmp.push_back(line[cnt]),cnt++;
+            index.push_back(tmp);
         }
         else if (type == "name") {
             cnt += 2;
-            prev_len = cnt;
-            while (line[cnt] != '"') index[cnt - prev_len] = line[cnt],cnt++;
+            std::string tmp;
+            while (line[cnt] != '"') tmp.push_back(line[cnt]),cnt++;
+            index.push_back(tmp);
         }
         else if (type == "author") {
             cnt += 2;
-            prev_len = cnt;
-            while (line[cnt] != '"') index[cnt - prev_len] = line[cnt],cnt++;
+            std::string tmp;
+            while (line[cnt] != '"') tmp.push_back(line[cnt]),cnt++;
+            index.push_back(tmp);
         }
         else if (type == "keyword") {
             cnt += 2;
-            prev_len = cnt;
-            while (line[cnt] != '"') index[cnt - prev_len] = line[cnt],cnt++;
+            std::string tmp;
+            while (line[cnt] != '"') {
+                if (line[cnt] == '|') {
+                    index.push_back(tmp);
+                    tmp.clear();
+                    cnt++;
+                }
+                else {
+                    tmp.push_back(line[cnt]);
+                    cnt++;
+                }
+            }
+            index.push_back(tmp);
+        }
+        else if (type == "price") {
+            cnt++;
+            std::string tmp;
+            while (line[cnt] != '\0') tmp.push_back(line[cnt]),cnt++;
+            index.push_back(tmp);
         }
     }
 }
@@ -89,6 +138,7 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
         int cnt = 0;
         bool exist = false;
         std::array<char,60> bookname_{};
+        //std::cerr << index << "\n";
         while (index[cnt] != '\0') bookname_[cnt] = index[cnt],cnt++;
         std::vector<std::array<char,20>> ISBNs = name_isbn_map.ReturnValues(bookname_);
         for (auto it = ISBNs.begin(); it != ISBNs.end(); it++) {
@@ -122,17 +172,52 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
         if (exist == false) std::cout << "\n";
     }
 }
-bool Repository::MultipleKeywords(std::string keyword) {
+std::vector<std::string> Repository::MultipleKeywords(std::array<char,60> keyword) {
     int cnt = 0;
+    std::vector<std::string> keywords{};
+    std::string tmp_keyword{};
     while (keyword[cnt] != '\0') {
-        if (keyword[cnt] == '|' && keyword[cnt + 1] != '\0') return false;
-        cnt++;
+        if (keyword[cnt] == '|' && keyword[cnt + 1] != '\0') {
+            keywords.push_back(tmp_keyword);
+            tmp_keyword.clear();
+            cnt++;
+        }
+        else {
+            tmp_keyword.push_back(keyword[cnt]);
+            cnt++;
+        }
+    }
+    keywords.push_back(tmp_keyword);
+    return keywords;
+}
+bool Repository::RepeatKeywords(std::vector<std::string> keywords) {
+    std::set<std::string> has_keyword{};
+    for (auto it = keywords.begin(); it != keywords.end(); it++) {
+        if (has_keyword.find(*it) != has_keyword.end()) {
+            return true;
+        }
+        else has_keyword.insert(*it);
     }
     return false;
 }
 void Repository::DeleteBook(Book& book) {
     name_isbn_map.Delete(book.BookName,book.ISBN);
     author_isbn_map.Delete(book.Author,book.ISBN);
-    keyword_isbn_map.Delete(book.Keyword,book.ISBN);
+    std::vector<std::string> keywords = MultipleKeywords(book.Keyword);
+    for (auto it = keywords.begin(); it != keywords.end(); it++) {
+        int cnt = 0;
+        std::array<char,60> keyword_{};
+        while ((*it)[cnt] != '\0') keyword_[cnt] = (*it)[cnt],cnt++;
+        keyword_isbn_map.Delete(keyword_,book.ISBN);
+    }
     isbn_db.Delete(book.ISBN,book);
+}
+std::array<char,60> Repository::GetKeywords(std::string lines) {
+    std::array<char,60> keyword_{};
+    int cnt = 10;
+    while (lines[cnt] != '"') {
+        keyword_[cnt - 10] = lines[cnt];
+        cnt++;
+    }
+    return keyword_;
 }

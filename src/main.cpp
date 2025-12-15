@@ -2,6 +2,7 @@
 // Created by HTY on 2025/12/9.
 //
 #include<iostream>
+#include<iomanip>
 #include "../include/Account.h"
 #include "../include/User.h"
 #include "../include/Book.h"
@@ -10,6 +11,7 @@
 #include<sstream>
 #include<vector>
 #include<array>
+#include<set>
 // 把string类型转成 std::array<char,30>
 std::array<char,30> Change30(std::string input) {
     std::array<char,30> output{};
@@ -19,6 +21,12 @@ std::array<char,30> Change30(std::string input) {
 }
 std::array<char,20> Change20(std::string input) {
     std::array<char,20> output{};
+    int cnt = 0;
+    while (input[cnt] != '\0') output[cnt] = input[cnt],cnt++;
+    return output;
+}
+std::array<char,60> Change60(std::string input) {
+    std::array<char,60> output{};
     int cnt = 0;
     while (input[cnt] != '\0') output[cnt] = input[cnt],cnt++;
     return output;
@@ -46,12 +54,18 @@ int main() {
         std::string token;
         while (input >> token) {
             tokens.push_back(token);
-            std::cerr << token << "\n";
+            //std::cerr << token << "\n";
         }
         int tokens_size = tokens.size();
-        if (tokens_size == 0) continue;
+        if (tokens_size == 0) {
+            input.str("");
+            input.clear();
+            tokens.clear();
+            continue;
+        }
         bool valid = true;
-        if (tokens[0] == "su") {
+        if (tokens[0] == "exit" || tokens[0] == "quit") exit(0);
+        else if (tokens[0] == "su") {
             if (tokens_size == 1) valid = false;
             else if (account.FindUser(tokens[1]) == false) valid = false;
             else {
@@ -72,7 +86,7 @@ int main() {
                 }
             }
         }
-        if (tokens[0] == "logout") {
+        else if (tokens[0] == "logout") {
             if (cur_user.Privilege < 1) valid = false;
             else if (tokens_size > 1) valid = false;
             else if (!account.LogOut()) valid = false;
@@ -81,7 +95,7 @@ int main() {
                 cur_select_book = empty_book;
             }
         }
-        if (tokens[0] == "register") {
+        else if (tokens[0] == "register") {
             if (tokens_size != 4) valid = false;
             else if (account.FindUser(tokens[1]) == true || account.ValidCheck(tokens[1]) == false) valid = false;
             else if (account.ValidCheck(tokens[2]) == false) valid = false;
@@ -90,7 +104,7 @@ int main() {
                 account.AddNewAccount(new_user);
             }
         }
-        if (tokens[0] == "passwd") {
+        else if (tokens[0] == "passwd") {
             if (cur_user.Privilege < 1) valid = false;
             else if (tokens_size < 3 || tokens_size > 4) valid = false;
             else if (account.FindUser(tokens[1]) == false) valid = false;
@@ -125,7 +139,7 @@ int main() {
                 }
             }
         }
-        if (tokens[0] == "useradd") {
+        else if (tokens[0] == "useradd") {
             if (cur_user.Privilege < 3) valid = false;
             if (tokens_size != 5) valid = false;
             else if (account.ValidCheck(tokens[1]) == false || account.ValidCheck(tokens[2]) == false) valid = false;
@@ -141,7 +155,7 @@ int main() {
                 }
             }
         }
-        if (tokens[0] == "delete") {
+        else if (tokens[0] == "delete") {
             if (cur_user.Privilege < 7) valid = false;
             else if (tokens_size != 2) valid = false;
             else {
@@ -156,7 +170,7 @@ int main() {
         // =============================================
         //图书系统
         // 先按照""中间没有空格处理
-        if (tokens[0] == "show") {
+        else if (tokens[0] == "show") {
             if (cur_user.Privilege < 1) valid = false;
             else if (tokens_size == 1) {
                 repo.ShowAll();
@@ -167,18 +181,18 @@ int main() {
 
                 }
                 else {
-                    std::string type,index;
+                    std::string type;
+                    std::vector<std::string> index;
                     repo.Parser(tokens[1],type,index);
-                    std::cerr << type << " " << index << "\n";
                     if (index.empty()) valid = false;
-                    else if (type == "keyword" && repo.MultipleKeywords(index)) valid = false;
+                    else if (type == "keyword" && index.size() > 1) valid = false;
                     else {
-                        repo.PrintExistingBooks(type,index);
+                        repo.PrintExistingBooks(type,index[0]);
                     }
                 }
             }
         }
-        if (tokens[0] == "buy") {
+        else if (tokens[0] == "buy") {
             if (cur_user.Privilege < 1) valid = false;
             else if (tokens_size != 3) valid = false;
             else if (repo.FindBook(tokens[1]) == false) valid = false;
@@ -186,18 +200,18 @@ int main() {
                 int q = repo.ComputeQuantity(tokens[2]);
                 if (q == -1) valid = false;
                 else {
-                    Book buy_book = repo.GetABook(tokens[2]);
+                    Book buy_book = repo.GetABook(tokens[1]);
                     if (buy_book.Quantity < q) valid = false;
                     else {
                         float charge = q * buy_book.Price;
                         buy_book.Quantity -= q;
                         repo.ChangeInfo(buy_book);
-                        std::cout << charge << "\n";
+                        std::cout << std::fixed << std::setprecision(2) << charge << "\n";
                     }
                 }
             }
         }
-        if (tokens[0] == "select") {
+        else if (tokens[0] == "select") {
             if (cur_user.Privilege < 3) valid = false;
             else if (tokens_size != 2) valid = false;
             else {
@@ -213,10 +227,58 @@ int main() {
             }
         }
         // TBD
-        if (tokens[0] == "modify") {
+        else if (tokens[0] == "modify") {
             if (cur_user.Privilege < 3) valid = false;
+            else if (cur_select_book == empty_book) valid = false;
+            else {
+                Book change_book = cur_select_book;
+                std::set<std::string> has_op{};
+                for (int j = 1; j < tokens_size; j++) {
+                    std::string type;
+                    std::vector<std::string> index;
+                    repo.Parser(tokens[j],type,index);
+                    if (index.empty()) {
+                        valid = false;
+                        break;
+                    }
+                    else if (type == "ISBN" && Change20(index[0]) == cur_select_book.ISBN) {
+                        valid = false;
+                        break;
+                    }
+                    else if (has_op.find(index[0]) != has_op.end()) {
+                        valid = false;
+                        break;
+                    }
+                    else if (type == "keyword" && repo.RepeatKeywords(index)) {
+                        valid = false;
+                        break;
+                    }
+                    else {
+                        if (type == "ISBN") {
+                            change_book.ISBN = Change20(index[0]);
+                        }
+                        else if (type == "name") {
+                            change_book.BookName = Change60(index[0]);
+                        }
+                        else if (type == "author") {
+                            change_book.Author = Change60(index[0]);
+                        }
+                        else if (type == "keyword") {
+                            change_book.Keyword = repo.GetKeywords(tokens[j]);
+                        }
+                        else if (type == "price") {
+                            change_book.Price = repo.ComputeCost(index[0]);
+                        }
+                    }
+                    if (valid) {
+                        repo.DeleteBook(cur_select_book);
+                        repo.AddNewBook(change_book);
+                        cur_select_book = change_book;
+                    }
+                }
+            }
         }
-        if (tokens[0] == "import") {
+        else if (tokens[0] == "import") {
             if (cur_user.Privilege < 3) valid = false;
             else if (tokens_size != 3) valid = false;
             else if (cur_select_book == empty_book) valid = false;
@@ -234,6 +296,8 @@ int main() {
 
         // =============================================
         // 日志系统
+        else valid = false;
+
         if (valid == false) std::cout << "Invalid\n";
         input.str("");
         input.clear();

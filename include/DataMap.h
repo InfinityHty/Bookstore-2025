@@ -306,7 +306,7 @@ public:
         file.close();
         return false;
     }
-    // 适用于账户管理系统修改密码 书籍管理系统修改除ISBN之外的书籍信息
+    // 适用于账户管理系统修改密码 书籍管理系统修改Price和Quantity
     void ChangeInfo(T1 index,T2 new_value) {
         index_file.open(index_file_name,std::ios::binary | std::ios::in | std::ios::out);
         file.open(file_name,std::ios::binary | std::ios::in | std::ios::out);
