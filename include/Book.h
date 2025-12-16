@@ -13,8 +13,8 @@ public:
     std::array<char,60> BookName{};
     std::array<char,60> Author{};
     std::array<char,60> Keyword{};
-    int Quantity;// 库存数量
-    float Price;// 保留小数点后两位
+    int Quantity = 0;// 库存数量
+    float Price = 0;// 保留小数点后两位
     Book() = default;
     Book(std::string isbn,std::string bookname,std::string author,std::string keyword,int quantity,float price) : Quantity(quantity), Price(price){
         int cnt = 0;

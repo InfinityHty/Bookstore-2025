@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-add_executable(Bookstore_2025
+add_executable(code
         include/Memory.h
         src/main.cpp
         include/User.h
