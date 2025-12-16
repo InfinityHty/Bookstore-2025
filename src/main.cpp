@@ -94,7 +94,7 @@ int main() {
             else if (!account.LogOut()) valid = false;
             else {
                 cur_user = account.CurrentUser();
-                cur_select_book = empty_book;
+                //cur_select_book = empty_book;
             }
         }
         else if (tokens[0] == "register") {
@@ -282,6 +282,7 @@ int main() {
                             change_book.Keyword = repo.GetKeywords(tokens[j]);
                         }
                         else if (type == "price") {
+                            //std::cerr << index[0] << "\n";
                             change_book.Price = repo.ComputeCost(index[0]);
                         }
                     }
