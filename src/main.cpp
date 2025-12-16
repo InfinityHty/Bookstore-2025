@@ -94,7 +94,7 @@ int main() {
             else if (!account.LogOut()) valid = false;
             else {
                 cur_user = account.CurrentUser();
-                cur_select_book = empty_book;
+                //cur_select_book = empty_book;
             }
         }
         else if (tokens[0] == "register") {
