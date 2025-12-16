@@ -24,441 +24,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aba7b2c-2953-4c40-8655-d5476f249351" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/OperationLog.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/1.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/1.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/10.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/10.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/100.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/100.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/101.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/101.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/102.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/102.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/103.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/103.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/104.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/104.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/105.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/105.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/106.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/106.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/107.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/107.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/108.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/108.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/109.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/109.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/11.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/11.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/110.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/110.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/111.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/111.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/112.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/112.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/113.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/113.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/114.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/114.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/115.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/115.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/116.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/116.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/117.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/117.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/118.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/118.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/119.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/119.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/12.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/12.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/120.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/120.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/121.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/121.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/122.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/122.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/123.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/123.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/124.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/124.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/125.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/125.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/126.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/126.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/127.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/127.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/128.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/128.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/129.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/129.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/13.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/13.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/130.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/130.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/131.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/131.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/132.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/132.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/133.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/133.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/134.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/134.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/135.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/135.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/136.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/136.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/137.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/137.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/138.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/138.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/139.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/139.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/14.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/14.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/140.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/140.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/141.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/141.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/142.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/142.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/143.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/143.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/144.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/144.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/145.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/145.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/146.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/146.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/147.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/147.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/148.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/148.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/149.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/149.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/15.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/15.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/150.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/150.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/151.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/151.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/152.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/152.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/153.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/153.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/154.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/154.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/155.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/155.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/156.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/156.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/157.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/157.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/158.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/158.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/159.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/159.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/16.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/16.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/160.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/160.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/161.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/161.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/162.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/162.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/163.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/163.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/164.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/164.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/165.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/165.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/166.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/166.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/167.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/167.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/168.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/168.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/169.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/169.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/17.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/17.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/170.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/170.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/171.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/171.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/172.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/172.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/173.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/173.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/174.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/174.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/175.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/175.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/176.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/176.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/177.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/177.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/178.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/178.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/179.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/179.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/18.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/18.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/180.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/180.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/181.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/181.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/182.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/182.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/183.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/183.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/184.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/184.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/185.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/185.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/186.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/186.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/187.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/187.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/188.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/188.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/189.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/189.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/19.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/19.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/190.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/190.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/191.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/191.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/192.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/192.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/193.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/193.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/194.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/194.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/195.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/195.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/196.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/196.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/197.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/197.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/198.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/198.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/199.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/199.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/2.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/2.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/20.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/20.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/200.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/200.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/201.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/201.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/202.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/202.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/203.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/203.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/204.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/204.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/205.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/205.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/206.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/206.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/207.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/207.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/208.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/208.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/209.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/209.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/21.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/21.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/210.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/210.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/211.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/211.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/212.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/212.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/213.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/213.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/214.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/214.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/22.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/22.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/23.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/23.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/24.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/24.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/25.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/25.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/26.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/26.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/27.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/27.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/28.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/28.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/29.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/29.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/3.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/3.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/30.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/30.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/31.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/31.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/32.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/32.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/33.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/33.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/34.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/34.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/35.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/35.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/36.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/36.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/37.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/37.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/38.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/38.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/39.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/39.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/4.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/4.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/40.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/40.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/41.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/41.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/42.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/42.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/43.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/43.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/44.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/44.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/45.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/45.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/46.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/46.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/47.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/47.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/48.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/48.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/49.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/49.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/5.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/5.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/50.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/50.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/51.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/51.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/52.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/52.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/53.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/53.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/54.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/54.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/55.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/55.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/56.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/56.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/57.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/57.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/58.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/58.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/59.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/59.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/6.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/6.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/60.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/60.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/61.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/61.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/62.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/62.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/63.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/63.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/64.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/64.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/65.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/65.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/66.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/66.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/67.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/67.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/68.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/68.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/69.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/69.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/7.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/7.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/70.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/70.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/71.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/71.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/72.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/72.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/73.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/73.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/74.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/74.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/75.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/75.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/76.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/76.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/77.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/77.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/78.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/78.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/79.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/79.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/8.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/8.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/80.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/80.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/81.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/81.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/82.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/82.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/83.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/83.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/84.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/84.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/85.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/85.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/86.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/86.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/87.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/87.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/88.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/88.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/89.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/89.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/9.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/9.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/90.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/90.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/91.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/91.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/92.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/92.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/93.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/93.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/94.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/94.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/95.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/95.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/96.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/96.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/97.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/97.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/98.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/98.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/99.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPoints/1075/99.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/DataMap.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/DataMap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Repository.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Repository.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Book.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Book.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/OperationLog.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/OperationLog.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -506,88 +75,6 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -605,7 +92,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Batch.clean_run.executor": "Run",
     "CMake Application.Bookstore_2025.executor": "Run",
+    "CMake Application.code.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -626,33 +115,45 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="Bookstore_2025" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Bookstore_2025" TARGET_NAME="Bookstore_2025" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Bookstore_2025" RUN_TARGET_NAME="Bookstore_2025">
+  <component name="RunManager" selected="CMake Application.code">
+    <configuration default="true" type="BIBTEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify-bibtex>
+        <compiler />
+        <compiler-path />
+        <compiler-arguments />
+        <envs />
+        <main-file />
+        <aux-dir />
+        <latex-distribution>PROJECT_SDK</latex-distribution>
+      </texify-bibtex>
+      <method v="2" />
+    </configuration>
+    <configuration name="clean_run" type="BatchConfigurationType" factoryName="Batch" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="D:\SJTU\大一上学期\程序设计作业\Bookstore-2025\cmake-build-debug" />
+      <option name="PARENT_ENVS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="clean_run.bat" />
+      <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="code" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Bookstore_2025" TARGET_NAME="Bookstore_2025" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Bookstore_2025" RUN_TARGET_NAME="Bookstore_2025">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
-      <texify>
-        <compiler>PDFLATEX</compiler>
-        <compiler-path />
-        <pdf-viewer>none</pdf-viewer>
-        <require-focus>true</require-focus>
-        <viewer-command />
-        <compiler-arguments />
-        <envs />
-        <expand-macros-in-environment-variables>false</expand-macros-in-environment-variables>
-        <before-run-command />
+    <configuration default="true" type="EXTERNAL_TOOL_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify-external>
+        <program>PYTHONTEX</program>
         <main-file />
-        <output-path>{projectDir}/out</output-path>
-        <auxil-path>{projectDir}/auxil</auxil-path>
-        <compile-twice>false</compile-twice>
-        <output-format>PDF</output-format>
-        <latex-distribution>TEXLIVE</latex-distribution>
-        <has-been-run>false</has-been-run>
-        <bib-run-config>[]</bib-run-config>
-        <makeindex-run-config>[]</makeindex-run-config>
-      </texify>
+        <work-dir />
+        <envs />
+      </texify-external>
       <method v="2" />
     </configuration>
     <configuration default="true" type="MAKEINDEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
@@ -664,6 +165,15 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Batch.clean_run" />
+      <item itemvalue="CMake Application.code" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Batch.clean_run" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -675,6 +185,7 @@
       <workItem from="1765614411253" duration="26252000" />
       <workItem from="1765704882180" duration="12534000" />
       <workItem from="1765806431028" duration="7107000" />
+      <workItem from="1765884868142" duration="5690000" />
     </task>
     <servers />
   </component>
@@ -713,6 +224,41 @@
           <url>file://$PROJECT_DIR$/include/DataMap.h</url>
           <line>372</line>
           <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.cpp</url>
+          <line>192</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.cpp</url>
+          <line>181</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.cpp</url>
+          <line>184</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.cpp</url>
+          <line>188</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.cpp</url>
+          <line>189</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.cpp</url>
+          <line>190</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.cpp</url>
+          <line>191</line>
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

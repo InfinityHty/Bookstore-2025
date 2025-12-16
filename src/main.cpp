@@ -7,6 +7,7 @@
 #include "../include/User.h"
 #include "../include/Book.h"
 #include "../include/Repository.h"
+#include "../include/OperationLog.h"
 #include<string>
 #include<sstream>
 #include<vector>
@@ -38,6 +39,7 @@ int main() {
     account.Initialize();
     Repository repo;
     repo.Initialize();
+    OperationLog log;
     account.AddNewAccount(root_user);
     input.str("");
     input.clear();
@@ -178,7 +180,19 @@ int main() {
             else {
                 // 财务记录查询
                 if (tokens[1] == "finance") {
-
+                    if (cur_user.Privilege < 7) valid = false;
+                    else {
+                        if (tokens_size == 2) {
+                            //std::cerr << log.trade_cnt;
+                            log.ShowFinance(log.trade_cnt);
+                        }
+                        else {
+                            int cnt = log.ComputeCount(tokens[2]);
+                            if (cnt < 0 || cnt > log.trade_cnt) valid = false;
+                            else if (cnt == 0) std::cout << "\n";
+                            else log.ShowFinance(cnt);
+                        }
+                    }
                 }
                 else {
                     std::string type;
@@ -198,7 +212,7 @@ int main() {
             else if (repo.FindBook(tokens[1]) == false) valid = false;
             else {
                 int q = repo.ComputeQuantity(tokens[2]);
-                if (q == -1) valid = false;
+                if (q == -1 || q == 0) valid = false;
                 else {
                     Book buy_book = repo.GetABook(tokens[1]);
                     if (buy_book.Quantity < q) valid = false;
@@ -207,6 +221,7 @@ int main() {
                         buy_book.Quantity -= q;
                         repo.ChangeInfo(buy_book);
                         std::cout << std::fixed << std::setprecision(2) << charge << "\n";
+                        log.NewInOut(charge);
                     }
                 }
             }
@@ -241,7 +256,7 @@ int main() {
                         valid = false;
                         break;
                     }
-                    else if (type == "ISBN" && Change20(index[0]) == cur_select_book.ISBN) {
+                    else if (type == "ISBN" && repo.FindBook(index[0])) {
                         valid = false;
                         break;
                     }
@@ -290,12 +305,28 @@ int main() {
                 else {
                     cur_select_book.Quantity += q;
                     repo.ChangeInfo(cur_select_book);
+                    log.NewInOut((-1) * total_cost);
                 }
             }
         }
 
         // =============================================
         // 日志系统
+        else if (tokens[0] == "report") {
+            if (cur_user.Privilege < 7) valid = false;
+            else if (tokens_size != 2) valid = false;
+            else {
+                if (tokens[1] == "finance") {
+
+                }
+                if (tokens[1] == "employee") {
+
+                }
+            }
+        }
+        else if (tokens[0] == "log") {
+
+        }
         else valid = false;
 
         if (valid == false) std::cout << "Invalid\n";
