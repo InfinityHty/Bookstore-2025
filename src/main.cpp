@@ -67,7 +67,10 @@ int main() {
             continue;
         }
         bool valid = true;
-        if (tokens[0] == "exit" || tokens[0] == "quit") exit(0);
+        if (tokens[0] == "exit" || tokens[0] == "quit"){
+            if(tokens_size != 1) valid = false;
+            else exit(0);
+        }
         else if (tokens[0] == "su") {
             if (tokens_size == 1) valid = false;
             else if (account.FindUser(tokens[1]) == false) valid = false;
