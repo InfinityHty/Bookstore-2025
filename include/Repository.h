@@ -23,6 +23,10 @@ public:
     std::vector<std::string> MultipleKeywords(std::array<char,60> keyword);
     bool RepeatKeywords(std::vector<std::string> keywords);
     std::array<char,60> GetKeywords(std::string lines);
+    void LogIn(Book& book);
+    void LogOut();
+    Book GetSelectedBook();
+    void ChangeSelectedBook(Book& book);
 private:
     std::string filename_isbn = "isbn.txt";
     std::string index_isbn = "index_isbn.txt";
@@ -32,5 +36,6 @@ private:
     std::string index_author = "index_author.txt";
     std::string filename_keyword = "keyword.txt";
     std::string index_keyword = "index_keyword.txt";
+    std::vector<Book> selected_list{};
 };
 #endif //BOOKSTORE_2025_REPOSITORY_H

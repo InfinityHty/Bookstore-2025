@@ -224,3 +224,16 @@ std::array<char,60> Repository::GetKeywords(std::string lines) {
     }
     return keyword_;
 }
+void Repository::LogIn(Book& book) {
+    selected_list.push_back(book);
+}
+void Repository::LogOut() {
+    selected_list.pop_back();
+}
+Book Repository::GetSelectedBook() {
+    return selected_list.back();
+}
+void Repository::ChangeSelectedBook(Book& book) {
+    selected_list.pop_back();
+    selected_list.push_back(book);
+}

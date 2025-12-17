@@ -50,6 +50,7 @@ int main() {
     Book cur_select_book;
     Book empty_book("","","","",0,0);
     cur_user.Privilege = 0;
+    repo.LogIn(empty_book);
     while (std::getline(std::cin,instruction)) {
         input << instruction;
         // 账户系统
@@ -81,11 +82,15 @@ int main() {
                     if (cur_user.Privilege > new_user.Privilege) {
                         account.LogIn(new_user);
                         cur_user = new_user;
+                        cur_select_book = empty_book;
+                        repo.LogIn(empty_book);
                     }
                     else {
                         if (Change30(tokens[2]) == new_user.Password) {
                             account.LogIn(new_user);
                             cur_user = new_user;
+                            cur_select_book = empty_book;
+                            repo.LogIn(empty_book);
                         }
                         else valid = false;
                     }
@@ -98,7 +103,8 @@ int main() {
             else if (!account.LogOut()) valid = false;
             else {
                 cur_user = account.CurrentUser();
-                //cur_select_book = empty_book;
+                repo.LogOut();
+                cur_select_book = repo.GetSelectedBook();
             }
         }
         else if (tokens[0] == "register") {
@@ -238,12 +244,14 @@ int main() {
             else {
                 if (repo.FindBook(tokens[1]) == true) {
                     cur_select_book = repo.GetABook(tokens[1]);
+                    repo.ChangeSelectedBook(cur_select_book);
                 }
                 else {
                     Book new_book;
                     new_book.ISBN = Change20(tokens[1]);
                     repo.AddNewBook(new_book);
                     cur_select_book = new_book;
+                    repo.ChangeSelectedBook(cur_select_book);
                 }
             }
         }
@@ -302,6 +310,7 @@ int main() {
                     repo.DeleteBook(cur_select_book);
                     repo.AddNewBook(change_book);
                     cur_select_book = change_book;
+                    repo.ChangeSelectedBook(cur_select_book);
                 }
             }
         }
