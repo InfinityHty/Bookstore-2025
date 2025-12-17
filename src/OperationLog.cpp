@@ -8,6 +8,7 @@
 MemoryRiver<float,1000> trade_db;
 void OperationLog::Initialize() {
     trade_db.initialise(filename_trade);
+    trade_db.get_body_num(trade_cnt);
 }
 int OperationLog::ComputeCount(std::string input) {
     int cnt = 0,output = 0;
@@ -32,6 +33,7 @@ void OperationLog::ShowFinance(int cnt) {
     std::cout << " - " << pay << "\n";
 }
 void OperationLog::NewInOut(float num) {
+    //std::cerr << trade_cnt << "\n";
     trade_cnt++;
     int index = trade_db.write(num);
     trade_db.write_info(index,trade_cnt);

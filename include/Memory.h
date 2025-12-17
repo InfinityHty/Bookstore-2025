@@ -20,7 +20,7 @@ private:
     fstream file;
     string file_name;
     int sizeofT = sizeof(T);
-    //int cur_text = 0;
+    int body_num = 0;
 public:
     MemoryRiver() = default;
 
@@ -28,13 +28,23 @@ public:
 
     void initialise(string FN = "") {
         if (FN != "") file_name = FN;
-        file.open(file_name, std::ios::out | std::ios::binary);
-        int tmp = 0;
-        for (int i = 0; i < info_len; ++i)
-            file.write(reinterpret_cast<char *>(&tmp), sizeof(int));
+        file.open(file_name, std::ios::in | std::ios::binary);
+        if (!file.good()) {
+            file.open(file_name,std::ios::out | std::ios::binary);
+            body_num = 0;
+            int tmp = 0;
+            for (int i = 0; i < info_len; ++i)
+                file.write(reinterpret_cast<char *>(&tmp), sizeof(int));
+        }
+        else {
+            file.seekg(0,std::ios::end);
+            body_num = ((size_t)file.tellg() - sizeof(int) * info_len) / sizeofT;
+        }
         file.close();
     }
-
+    void get_body_num(int &num) {
+        num = body_num;
+    }
     //读出第n个int的值赋给tmp，1_base
     void get_info(int &tmp, int n) {
         if (n > info_len) return;

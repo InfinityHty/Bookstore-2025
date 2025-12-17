@@ -17,7 +17,7 @@ private:
     std::string filename_trade = "trade.txt";
     //std::vector<float> trade{};
 public:
-    int trade_cnt = 0;// 总交易笔数
+    int trade_cnt;// 总交易笔数
     void Initialize();
     int ComputeCount(std::string);
     void ShowFinance(int cnt);
