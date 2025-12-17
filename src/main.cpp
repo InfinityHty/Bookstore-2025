@@ -123,9 +123,9 @@ int main() {
                         }
                     }
                     else {
-                        if (cur_user.Password != Change30(tokens[2]) || account.ValidCheck(tokens[3]) == false) valid = false;
+                        User to_be_modify = account.GetUser(tokens[1]);
+                        if (to_be_modify.Password != Change30(tokens[2]) || account.ValidCheck(tokens[3]) == false) valid = false;
                         else {
-                            User to_be_modify = account.GetUser(tokens[1]);
                             to_be_modify.NewPassword(tokens[3]);
                             account.ChangeInfo(to_be_modify);
                         }
@@ -217,6 +217,7 @@ int main() {
                 else {
                     Book buy_book = repo.GetABook(tokens[1]);
                     if (buy_book.Quantity < q) valid = false;
+                    // 如果一本书库存为0要不要删掉？
                     else {
                         float charge = q * buy_book.Price;
                         buy_book.Quantity -= q;
@@ -242,7 +243,6 @@ int main() {
                 }
             }
         }
-        // TBD
         else if (tokens[0] == "modify") {
             if (cur_user.Privilege < 3) valid = false;
             else if (cur_select_book == empty_book) valid = false;
@@ -261,7 +261,7 @@ int main() {
                         valid = false;
                         break;
                     }
-                    else if (has_op.find(index[0]) != has_op.end()) {
+                    else if (has_op.find(type) != has_op.end()) {
                         valid = false;
                         break;
                     }
@@ -272,18 +272,23 @@ int main() {
                     else {
                         if (type == "ISBN") {
                             change_book.ISBN = Change20(index[0]);
+                            has_op.insert(type);
                         }
                         else if (type == "name") {
                             change_book.BookName = Change60(index[0]);
+                            has_op.insert(type);
                         }
                         else if (type == "author") {
                             change_book.Author = Change60(index[0]);
+                            has_op.insert(type);
                         }
                         else if (type == "keyword") {
                             change_book.Keyword = repo.GetKeywords(tokens[j]);
+                            has_op.insert(type);
                         }
                         else if (type == "price") {
                             change_book.Price = repo.ComputeCost(index[0]);
+                            has_op.insert(type);
                         }
                     }
                     if (valid) {
@@ -301,8 +306,8 @@ int main() {
             else {
                 int q = repo.ComputeQuantity(tokens[1]);
                 float total_cost = repo.ComputeCost(tokens[2]);
-                if (q == -1) valid = false;
-                else if (total_cost < 0) valid = false;
+                if (q == -1 || q == 0) valid = false;
+                else if (total_cost <= 0) valid = false;
                 else {
                     cur_select_book.Quantity += q;
                     repo.ChangeInfo(cur_select_book);

@@ -91,13 +91,13 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
             cnt += 2;
             std::string tmp;
             while (line[cnt] != '"') tmp.push_back(line[cnt]),cnt++;
-            index.push_back(tmp);
+            if (line[cnt + 1] == '\0') index.push_back(tmp);
         }
         else if (type == "author") {
             cnt += 2;
             std::string tmp;
             while (line[cnt] != '"') tmp.push_back(line[cnt]),cnt++;
-            index.push_back(tmp);
+            if (line[cnt + 1] == '\0') index.push_back(tmp);
         }
         else if (type == "keyword") {
             cnt += 2;
@@ -114,6 +114,7 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
                 }
             }
             index.push_back(tmp);
+            if (line[cnt + 1] != '\0') index.clear();
         }
         else if (type == "price") {
             cnt++;
