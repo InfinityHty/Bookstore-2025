@@ -26,6 +26,7 @@ bool Account::ValidCheck(std::string& s) {
     }
 }
 void Account::AddNewAccount(User& user) {
+    if (acc_db.CheckExist(user.UserID)) return;
     acc_db.Insert(user.UserID,user);
     //std::cerr << db.CheckExist(user.UserID) << "\n";
 }

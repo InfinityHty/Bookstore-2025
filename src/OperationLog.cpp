@@ -33,7 +33,7 @@ void OperationLog::ShowFinance(int cnt) {
     std::cout << " - " << pay << "\n";
 }
 void OperationLog::NewInOut(float num) {
-    //std::cerr << trade_cnt << "\n";
+    std::cerr << trade_cnt << "\n";
     trade_cnt++;
     int index = trade_db.write(num);
     trade_db.write_info(index,trade_cnt);
