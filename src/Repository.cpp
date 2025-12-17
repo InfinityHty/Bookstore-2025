@@ -237,3 +237,8 @@ void Repository::ChangeSelectedBook(Book& book) {
     selected_list.pop_back();
     selected_list.push_back(book);
 }
+void Repository::ModifySelectedBook(Book& pre_book,Book& new_book) {
+    for (auto it = selected_list.begin(); it != selected_list.end(); it++) {
+        if (*it == pre_book) *it = new_book;
+    }
+}

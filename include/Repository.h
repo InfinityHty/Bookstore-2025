@@ -27,6 +27,7 @@ public:
     void LogOut();
     Book GetSelectedBook();
     void ChangeSelectedBook(Book& book);
+    void ModifySelectedBook(Book& pre_book,Book& new_book);
 private:
     std::string filename_isbn = "isbn.txt";
     std::string index_isbn = "index_isbn.txt";

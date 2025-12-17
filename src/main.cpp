@@ -309,8 +309,8 @@ int main() {
                 if (valid) {
                     repo.DeleteBook(cur_select_book);
                     repo.AddNewBook(change_book);
+                    repo.ModifySelectedBook(cur_select_book,change_book);
                     cur_select_book = change_book;
-                    repo.ChangeSelectedBook(cur_select_book);
                 }
             }
         }

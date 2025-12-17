@@ -31,7 +31,6 @@
       <change beforePath="$PROJECT_DIR$/include/Repository.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Repository.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcases/ComplexTestCase-1/160.out" beforeDir="false" afterPath="$PROJECT_DIR$/testcases/ComplexTestCase-1/160.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +197,7 @@
       <workItem from="1765958641944" duration="1635000" />
       <workItem from="1765960774936" duration="2454000" />
       <workItem from="1765966304268" duration="4345000" />
-      <workItem from="1765971260073" duration="9678000" />
+      <workItem from="1765971260073" duration="10584000" />
     </task>
     <servers />
   </component>
