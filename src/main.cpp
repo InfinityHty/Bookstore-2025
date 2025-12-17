@@ -205,6 +205,7 @@ int main() {
                     if (index.empty()) valid = false;
                     else if (type == "keyword" && index.size() > 1) valid = false;
                     else {
+                        //std::cerr << index[0] << "\n";
                         repo.PrintExistingBooks(type,index[0]);
                     }
                 }
@@ -256,6 +257,7 @@ int main() {
                     std::string type;
                     std::vector<std::string> index;
                     repo.Parser(tokens[j],type,index);
+                    //std::cerr << index[0] << "\n";
                     if (index.empty()) {
                         valid = false;
                         break;
@@ -294,11 +296,12 @@ int main() {
                             has_op.insert(type);
                         }
                     }
-                    if (valid) {
-                        repo.DeleteBook(cur_select_book);
-                        repo.AddNewBook(change_book);
-                        cur_select_book = change_book;
-                    }
+
+                }
+                if (valid) {
+                    repo.DeleteBook(cur_select_book);
+                    repo.AddNewBook(change_book);
+                    cur_select_book = change_book;
                 }
             }
         }

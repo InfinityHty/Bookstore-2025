@@ -45,6 +45,7 @@ void Repository::AddNewBook(Book& book) {
     isbn_db.Insert(book.ISBN,book);
     name_isbn_map.Insert(book.BookName,book.ISBN);
     author_isbn_map.Insert(book.Author,book.ISBN);
+    //std::cerr << author_isbn_map.CheckExist(book.Author) << std::endl;
     // 每个keyword分别插入一遍
     std::vector<std::string> keywords = MultipleKeywords(book.Keyword);
     for (auto it = keywords.begin(); it != keywords.end(); it++) {
@@ -133,7 +134,7 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
         std::array<char,20> isbn_{};
         while (index[cnt] != '\0') isbn_[cnt] = index[cnt],cnt++;
         isbn_db.Find(isbn_);
-        if (isbn_db.CheckExist(isbn_) == false) std::cout << "\n";
+        //if (isbn_db.CheckExist(isbn_) == false) std::cout << "\n";
     }
     else if (type == "name") {
         int cnt = 0;
@@ -146,11 +147,12 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
             isbn_db.Find((*it));
             if (isbn_db.CheckExist((*it)) == true) exist = true;
         }
-        if (exist == false) std::cout << "\n";
+        //if (exist == false) std::cout << "\n";
     }
     else if (type == "author") {
         int cnt = 0;
         bool exist = false;
+        //std::cerr << index << std::endl;
         std::array<char,60> author_{};
         while (index[cnt] != '\0') author_[cnt] = index[cnt],cnt++;
         std::vector<std::array<char,20>> ISBNs = author_isbn_map.ReturnValues(author_);
@@ -158,7 +160,7 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
             isbn_db.Find((*it));
             if (isbn_db.CheckExist((*it)) == true) exist = true;
         }
-        if (exist == false) std::cout << "\n";
+        //if (exist == false) std::cout << "\n";
     }
     else if (type == "keyword") {
         int cnt = 0;
@@ -170,7 +172,7 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
             isbn_db.Find((*it));
             if (isbn_db.CheckExist((*it)) == true) exist = true;
         }
-        if (exist == false) std::cout << "\n";
+        //if (exist == false) std::cout << "\n";
     }
 }
 std::vector<std::string> Repository::MultipleKeywords(std::array<char,60> keyword) {
