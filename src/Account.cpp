@@ -6,7 +6,7 @@
 #include "../include/User.h"
 #include<string>
 #include<cstring>
-Database<std::array<char,30>,User,500> acc_db;
+Database<std::array<char,30>,User,50> acc_db;
 void Account::Initialize() {
     acc_db.Initialize(index_filename,filename);
 }
