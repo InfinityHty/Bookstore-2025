@@ -40,6 +40,7 @@ int main() {
     Repository repo;
     repo.Initialize();
     OperationLog log;
+    log.Initialize();
     account.AddNewAccount(root_user);
     input.str("");
     input.clear();

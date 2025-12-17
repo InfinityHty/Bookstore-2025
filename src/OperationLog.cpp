@@ -2,8 +2,13 @@
 // Created by HTY on 2025/12/16.
 //
 #include "OperationLog.h"
+#include "Memory.h"
 #include<iostream>
 #include<iomanip>
+MemoryRiver<float,1000> trade_db;
+void OperationLog::Initialize() {
+    trade_db.initialise(filename_trade);
+}
 int OperationLog::ComputeCount(std::string input) {
     int cnt = 0,output = 0;
     while (input[cnt] != '\0') {
@@ -16,13 +21,18 @@ int OperationLog::ComputeCount(std::string input) {
 void OperationLog::ShowFinance(int cnt) {
     float income = 0,pay = 0;
     for (int i = 0; i < cnt; i++) {
-        if (trade[trade_cnt - i - 1] > 0) income += trade[trade_cnt - i - 1];
-        else pay += trade[trade_cnt - i - 1] * (-1);
+        int index;
+        float value = 0;
+        trade_db.get_info(index,trade_cnt - i);
+        trade_db.read(value,index);
+        if (value > 0) income += value;
+        else pay += (-1) * value;
     }
     std::cout << "+ " << std::fixed << std::setprecision(2) << income;
     std::cout << " - " << pay << "\n";
 }
 void OperationLog::NewInOut(float num) {
-    trade.push_back(num);
     trade_cnt++;
+    int index = trade_db.write(num);
+    trade_db.write_info(index,trade_cnt);
 }

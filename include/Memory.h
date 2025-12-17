@@ -1,7 +1,7 @@
 //
 // Created by HTY on 2025/12/9.
 //
-// 存储ID -> 结构体的映射关系
+// 外存上的数组结构
 // 基于前置作业 memoryriver
 #ifndef BPT_MEMORYRIVER_HPP
 #define BPT_MEMORYRIVER_HPP

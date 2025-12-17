@@ -14,9 +14,11 @@ private:
         int op_number;
 
     };
-    std::vector<float> trade{};
+    std::string filename_trade = "trade.txt";
+    //std::vector<float> trade{};
 public:
     int trade_cnt = 0;// 总交易笔数
+    void Initialize();
     int ComputeCount(std::string);
     void ShowFinance(int cnt);
     void NewInOut(float num);
