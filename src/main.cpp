@@ -53,6 +53,7 @@ int main() {
     repo.LogIn(empty_book);
     while (std::getline(std::cin,instruction)) {
         input << instruction;
+        //std::cout << instruction << "\n";
         // 账户系统
         // ====================================================
         std::string token;
@@ -110,7 +111,7 @@ int main() {
         else if (tokens[0] == "register") {
             if (tokens_size != 4) valid = false;
             else if (account.FindUser(tokens[1]) == true || account.ValidCheck(tokens[1]) == false) valid = false;
-            else if (account.ValidCheck(tokens[2]) == false) valid = false;
+            else if (account.ValidCheck(tokens[2]) == false || tokens[3].size() > 30) valid = false;
             else {
                 User new_user(tokens[1],tokens[3],tokens[2],1);
                 account.AddNewAccount(new_user);
@@ -154,7 +155,7 @@ int main() {
         else if (tokens[0] == "useradd") {
             if (cur_user.Privilege < 3) valid = false;
             if (tokens_size != 5) valid = false;
-            else if (account.ValidCheck(tokens[1]) == false || account.ValidCheck(tokens[2]) == false) valid = false;
+            else if (account.ValidCheck(tokens[1]) == false || account.ValidCheck(tokens[2]) == false || tokens[5].size() > 30) valid = false;
             else if (account.FindUser(tokens[1]) == true) valid = false;
             else {
                 std::string privilege = tokens[3];
@@ -199,14 +200,13 @@ int main() {
                         else {
                             int cnt = log.ComputeCount(tokens[2]);
                             if (cnt < 0 || cnt > log.trade_cnt) valid = false;
-                            else if (cnt == 0) std::cout << "\n";
-                            else log.ShowFinance(cnt);
+                            else if (cnt > 0) log.ShowFinance(cnt);
                         }
                     }
                 }
                 else {
                     std::string type;
-                    std::vector<std::string> index;
+                    std::vector<std::string> index{};
                     repo.Parser(tokens[1],type,index);
                     if (index.empty()) valid = false;
                     else if (type == "keyword" && index.size() > 1) valid = false;
@@ -223,7 +223,7 @@ int main() {
             else if (repo.FindBook(tokens[1]) == false) valid = false;
             else {
                 int q = repo.ComputeQuantity(tokens[2]);
-                if (q == -1 || q == 0) valid = false;
+                if (q <= 0) valid = false;
                 else {
                     Book buy_book = repo.GetABook(tokens[1]);
                     if (buy_book.Quantity < q) valid = false;
@@ -247,7 +247,7 @@ int main() {
                     repo.ChangeSelectedBook(cur_select_book);
                 }
                 else {
-                    Book new_book;
+                    Book new_book("","","","",0,0);
                     new_book.ISBN = Change20(tokens[1]);
                     repo.AddNewBook(new_book);
                     cur_select_book = new_book;
@@ -321,7 +321,7 @@ int main() {
             else {
                 int q = repo.ComputeQuantity(tokens[1]);
                 float total_cost = repo.ComputeCost(tokens[2]);
-                if (q == -1 || q == 0) valid = false;
+                if (q <= 0) valid = false;
                 else if (total_cost <= 0) valid = false;
                 else {
                     cur_select_book.Quantity += q;

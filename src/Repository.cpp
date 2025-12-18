@@ -64,6 +64,9 @@ float Repository::ComputeCost(std::string cost) {
             dot_pos = cost.size() - 1 - cnt;
             cnt++;
         }
+        else if (cost[cnt] < '0' && cost[cnt] > '9') {
+            return -1;
+        }
         else {
             price = price * 10 + (cost[cnt] - '0');
             cnt++;
@@ -86,25 +89,29 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
             cnt++;
             std::string tmp;
             while (line[cnt] != '\0') tmp.push_back(line[cnt]),cnt++;
-            index.push_back(tmp);
+            if (tmp.size() <= 20) index.push_back(tmp);
         }
         else if (type == "name") {
             cnt += 2;
             std::string tmp;
             while (line[cnt] != '"') tmp.push_back(line[cnt]),cnt++;
-            if (line[cnt + 1] == '\0') index.push_back(tmp);
+            if (line[cnt + 1] == '\0' && tmp.size() <= 60) index.push_back(tmp);
         }
         else if (type == "author") {
             cnt += 2;
             std::string tmp;
             while (line[cnt] != '"') tmp.push_back(line[cnt]),cnt++;
-            if (line[cnt + 1] == '\0') index.push_back(tmp);
+            if (line[cnt + 1] == '\0' && tmp.size() <= 60) index.push_back(tmp);
         }
         else if (type == "keyword") {
             cnt += 2;
             std::string tmp;
             while (line[cnt] != '"') {
                 if (line[cnt] == '|') {
+                    if (line[cnt + 1] == '|' || line[cnt + 1] == '"' || line[cnt - 1] == '"') {
+                        index.clear();
+                        return;
+                    }
                     index.push_back(tmp);
                     tmp.clear();
                     cnt++;
@@ -120,7 +127,15 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
         else if (type == "price") {
             cnt++;
             std::string tmp;
-            while (line[cnt] != '\0') tmp.push_back(line[cnt]),cnt++;
+            while (line[cnt] != '\0') {
+                if (line[cnt] < '0' || line[cnt] > '9') {
+                    if (line[cnt] != '.') {
+                        index.clear();
+                        return;
+                    }
+                }
+                tmp.push_back(line[cnt]),cnt++;
+            }
             index.push_back(tmp);
         }
     }
@@ -204,8 +219,8 @@ bool Repository::RepeatKeywords(std::vector<std::string> keywords) {
     return false;
 }
 void Repository::DeleteBook(Book& book) {
-    name_isbn_map.Delete(book.BookName,book.ISBN);
     author_isbn_map.Delete(book.Author,book.ISBN);
+
     std::vector<std::string> keywords = MultipleKeywords(book.Keyword);
     for (auto it = keywords.begin(); it != keywords.end(); it++) {
         int cnt = 0;
@@ -213,6 +228,8 @@ void Repository::DeleteBook(Book& book) {
         while ((*it)[cnt] != '\0') keyword_[cnt] = (*it)[cnt],cnt++;
         keyword_isbn_map.Delete(keyword_,book.ISBN);
     }
+
+    name_isbn_map.Delete(book.BookName,book.ISBN);
     isbn_db.Delete(book.ISBN,book);
 }
 std::array<char,60> Repository::GetKeywords(std::string lines) {

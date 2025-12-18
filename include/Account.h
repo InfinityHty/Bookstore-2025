@@ -28,7 +28,7 @@ public:
 private:
     std::string filename = "account.txt";
     std::string index_filename = "index_account.txt";
-    std::vector<User> LogInStack;
+    std::vector<User> LogInStack{};
     int login_number = 0;
     User current_user;
 };
