@@ -59,7 +59,7 @@ void Repository::AddNewBook(Book& book) {
     }
     //keyword_isbn_map.Insert(book.Keyword,book.ISBN);
 }
-double Repository::ComputeCost(std::string cost) {
+long double Repository::ComputeCost(std::string cost) {
     int dot_pos = 0,cnt = 0;
     long long price = 0;
     while (cost[cnt] != '\0') {
@@ -75,7 +75,8 @@ double Repository::ComputeCost(std::string cost) {
             cnt++;
         }
     }
-    double ans = price * 1.00000 / pow(10,dot_pos);
+    long double ans = price * 1.00000000000000;
+    for (int i = 0; i < dot_pos; i++) ans = ans / 10.00000000;
     return ans;
 }
 // 拆分

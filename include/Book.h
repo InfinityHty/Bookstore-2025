@@ -14,9 +14,9 @@ public:
     std::array<char,60> Author{};
     std::array<char,60> Keyword{};
     int Quantity = 0;// 库存数量
-    double Price = 0;// 保留小数点后两位
+    long double Price = 0;// 保留小数点后两位
     Book() = default;
-    Book(std::string isbn,std::string bookname,std::string author,std::string keyword,int quantity,double price) : Quantity(quantity), Price(price){
+    Book(std::string isbn,std::string bookname,std::string author,std::string keyword,int quantity,long double price) : Quantity(quantity), Price(price){
         int cnt = 0;
         while (isbn[cnt] != '\0') ISBN[cnt] = isbn[cnt],cnt++;
         cnt = 0;

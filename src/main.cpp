@@ -249,7 +249,7 @@ int main() {
                     if (buy_book.Quantity < q) valid = false;
                     // 如果一本书库存为0要不要删掉？
                     else {
-                        double charge = 1.0000* q * buy_book.Price;
+                        long double charge = 1.0000 * q * buy_book.Price;
                         buy_book.Quantity -= q;
                         repo.ChangeInfo(buy_book);
                         std::cout << std::fixed << std::setprecision(2) << charge << "\n";
@@ -345,7 +345,7 @@ int main() {
             else {
                 // 登录栈里面的cur_select_book的quantity要及时修改
                 int q = repo.ComputeQuantity(tokens[1]);
-                double total_cost = repo.ComputeCost(tokens[2]);
+                long double total_cost = repo.ComputeCost(tokens[2]);
                 if (q <= 0) valid = false;
                 else if (total_cost <= 0) valid = false;
                 else {

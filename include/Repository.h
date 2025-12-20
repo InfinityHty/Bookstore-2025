@@ -16,7 +16,7 @@ public:
     Book GetABook(std::string isbn);
     Book GetABook2(std::array<char,20> isbn);
     void AddNewBook(Book& book);
-    double ComputeCost(std::string cost);
+    long double ComputeCost(std::string cost);
     void Parser(std::string line,std::string& type,std::vector<std::string>& index);
     void DeleteBook(Book& book);
     void ShowAll();
