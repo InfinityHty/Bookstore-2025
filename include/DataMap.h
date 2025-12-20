@@ -364,7 +364,7 @@ public:
         Node tmp;
         for (int i = 0; i < node_number; i++) {
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
-            if (index < tmp.min_key) break;
+            //if (index < tmp.min_key) break;
             if (index >= tmp.min_key && index <= tmp.max_key) {
                 file.seekg(tmp.content_pos);
                 Content cur[block_size + 1];
