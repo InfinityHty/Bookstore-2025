@@ -41,6 +41,9 @@ Book Repository::GetABook(std::string isbn) {
     while (isbn[cnt] != '\0') isbn_[cnt] = isbn[cnt],cnt++;
     return isbn_db.GetValue(isbn_);
 }
+Book Repository::GetABook2(std::array<char,20> isbn) {
+    return isbn_db.GetValue(isbn);
+}
 void Repository::AddNewBook(Book& book) {
     isbn_db.Insert(book.ISBN,book);
     name_isbn_map.Insert(book.BookName,book.ISBN);
@@ -56,7 +59,7 @@ void Repository::AddNewBook(Book& book) {
     }
     //keyword_isbn_map.Insert(book.Keyword,book.ISBN);
 }
-float Repository::ComputeCost(std::string cost) {
+double Repository::ComputeCost(std::string cost) {
     int dot_pos = 0,cnt = 0;
     long long price = 0;
     while (cost[cnt] != '\0') {
@@ -72,7 +75,7 @@ float Repository::ComputeCost(std::string cost) {
             cnt++;
         }
     }
-    float ans = price * 1.0 / pow(10,dot_pos);
+    double ans = price * 1.00000 / pow(10,dot_pos);
     return ans;
 }
 // 拆分

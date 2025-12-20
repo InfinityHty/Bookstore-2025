@@ -323,12 +323,11 @@ public:
                 for (int j = 0; j < tmp.body_size; j++) {
                     if (cur[j].index == index) {
                         cur[j].value = new_value;
-                        break;
+                        //break;
                     }
                 }
                 file.seekp(tmp.content_pos);
                 file.write(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
-                //break;
             }
             if (tmp.next_node == -1) break;
             index_file.seekg(tmp.next_node);

@@ -6,7 +6,7 @@
 #include<fstream>
 #include<iostream>
 #include<iomanip>
-MemoryRiver<float,1000> trade_db;
+MemoryRiver<double,1000> trade_db;
 
 void OperationLog::Initialize() {
     trade_db.initialise(filename_trade);
@@ -36,7 +36,7 @@ void OperationLog::ShowFinance(int cnt) {
     float income = 0,pay = 0;
     for (int i = 0; i < cnt; i++) {
         int index;
-        float value = 0;
+        double value = 0;
         trade_db.get_info(index,trade_cnt - i);
         trade_db.read(value,index);
         if (value > 0) income += value;
@@ -45,7 +45,7 @@ void OperationLog::ShowFinance(int cnt) {
     std::cout << "+ " << std::fixed << std::setprecision(2) << income;
     std::cout << " - " << pay << "\n";
 }
-void OperationLog::NewInOut(float num) {
+void OperationLog::NewInOut(double num) {
     //std::cerr << trade_cnt << "\n";
     trade_cnt++;
     int index = trade_db.write(num);
@@ -85,7 +85,7 @@ void OperationLog::ShowRecord() {
 void OperationLog::ReportFinance() {
     for (int i = 1; i <= trade_cnt; i++) {
         int index;
-        float value;
+        double value;
         trade_db.get_info(index,i);
         trade_db.read(value,index);
         if (value > 0) std::cout << "earned " << value << "\n";

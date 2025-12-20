@@ -34,6 +34,7 @@ std::array<char,60> Change60(std::string input) {
 }
 std::stringstream input;
 int main() {
+    freopen("result.txt","w",stdout);
     User root_user("root","root","sjtu",7);
     Account account;
     account.Initialize();
@@ -109,6 +110,9 @@ int main() {
                 cur_user = account.CurrentUser();
                 repo.LogOut();
                 cur_select_book = repo.GetSelectedBook();
+                if (cur_select_book.ISBN != empty_book.ISBN)
+                    cur_select_book = repo.GetABook2(cur_select_book.ISBN);
+                // 登录栈里面的book的quantity没改变 需要重新获取
             }
         }
         else if (tokens[0] == "register") {
@@ -245,7 +249,7 @@ int main() {
                     if (buy_book.Quantity < q) valid = false;
                     // 如果一本书库存为0要不要删掉？
                     else {
-                        float charge = q * buy_book.Price;
+                        double charge = 1.0000* q * buy_book.Price;
                         buy_book.Quantity -= q;
                         repo.ChangeInfo(buy_book);
                         std::cout << std::fixed << std::setprecision(2) << charge << "\n";
@@ -339,8 +343,9 @@ int main() {
             else if (tokens_size != 3) valid = false;
             else if (cur_select_book == empty_book) valid = false;
             else {
+                // 登录栈里面的cur_select_book的quantity要及时修改
                 int q = repo.ComputeQuantity(tokens[1]);
-                float total_cost = repo.ComputeCost(tokens[2]);
+                double total_cost = repo.ComputeCost(tokens[2]);
                 if (q <= 0) valid = false;
                 else if (total_cost <= 0) valid = false;
                 else {

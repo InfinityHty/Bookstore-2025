@@ -22,7 +22,7 @@ public:
     void Initialize();
     int ComputeCount(std::string);
     void ShowFinance(int cnt);
-    void NewInOut(float num);
+    void NewInOut(double num);
     void AddRecord(User user,std::string instruction);
     void ShowRecord();
     void ReportFinance();
