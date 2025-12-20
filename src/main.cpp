@@ -34,7 +34,7 @@ std::array<char,60> Change60(std::string input) {
 }
 std::stringstream input;
 int main() {
-    freopen("result.txt","w",stdout);
+    //freopen("result.txt","w",stdout);
     User root_user("root","root","sjtu",7);
     Account account;
     account.Initialize();
