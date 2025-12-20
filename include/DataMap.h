@@ -261,7 +261,7 @@ public:
         Node tmp;
         for (int i = 0; i < node_number; i++) {
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
-            if (index < tmp.min_key) break;
+            //if (index < tmp.min_key) break;
             if (index >= tmp.min_key && index <= tmp.max_key) {
                 file.seekg(tmp.content_pos);
                 Content cur[block_size + 1];
@@ -286,7 +286,7 @@ public:
         Node tmp;
         for (int i = 0; i < node_number; i++) {
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
-            if (index < tmp.min_key) break;
+            //if (index < tmp.min_key) break;
             if (index >= tmp.min_key && index <= tmp.max_key) {
                 file.seekg(tmp.content_pos);
                 Content cur[block_size + 1];
@@ -313,7 +313,7 @@ public:
         index_file.seekg(0,std::ios::beg);
         Node tmp;
         for (int i = 0; i < node_number; i++) {
-            index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            //index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
             if (index < tmp.min_key) break;
             if (index >= tmp.min_key && index <= tmp.max_key) {
                 file.seekg(tmp.content_pos);
@@ -327,7 +327,7 @@ public:
                 }
                 file.seekp(tmp.content_pos);
                 file.write(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
-                break;
+                //break;
             }
             if (tmp.next_node == -1) break;
             index_file.seekg(tmp.next_node);
