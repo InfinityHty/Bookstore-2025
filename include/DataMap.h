@@ -172,7 +172,7 @@ public:
                 }
 
                 if (i < tmp.body_size) {
-                    for (;i < tmp.body_size - 1; i++) {
+                    for (;i < tmp.body_size; i++) {
                         prev[i] = prev[i + 1];
                     }
                     tmp.body_size--;
