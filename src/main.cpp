@@ -85,6 +85,7 @@ int main() {
                         cur_user = new_user;
                         cur_select_book = empty_book;
                         repo.LogIn(empty_book);
+                        log.AddRecord(cur_user,"log in");
                     }
                     else {
                         if (Change30(tokens[2]) == new_user.Password) {
@@ -92,6 +93,7 @@ int main() {
                             cur_user = new_user;
                             cur_select_book = empty_book;
                             repo.LogIn(empty_book);
+                            log.AddRecord(cur_user,"log in");
                         }
                         else valid = false;
                     }
@@ -103,6 +105,7 @@ int main() {
             else if (tokens_size > 1) valid = false;
             else if (!account.LogOut()) valid = false;
             else {
+                log.AddRecord(cur_user,"log out");
                 cur_user = account.CurrentUser();
                 repo.LogOut();
                 cur_select_book = repo.GetSelectedBook();
@@ -115,6 +118,7 @@ int main() {
             else {
                 User new_user(tokens[1],tokens[3],tokens[2],1);
                 account.AddNewAccount(new_user);
+                log.AddRecord(new_user,"register");
             }
         }
         else if (tokens[0] == "passwd") {
@@ -130,6 +134,7 @@ int main() {
                             User to_be_modify = account.GetUser(tokens[1]);
                             to_be_modify.NewPassword(tokens[2]);
                             account.ChangeInfo(to_be_modify);
+                            log.AddRecord(to_be_modify,"change password");
                         }
                     }
                     else {
@@ -138,6 +143,7 @@ int main() {
                         else {
                             to_be_modify.NewPassword(tokens[3]);
                             account.ChangeInfo(to_be_modify);
+                            log.AddRecord(to_be_modify,"change password");
                         }
                     }
                 }
@@ -148,6 +154,7 @@ int main() {
                     else {
                         to_be_modify.NewPassword(tokens[3]);
                         account.ChangeInfo(to_be_modify);
+                        log.AddRecord(to_be_modify,"change password");
                     }
                 }
             }
@@ -165,6 +172,7 @@ int main() {
                 else {
                     User new_user(tokens[1],tokens[4],tokens[2],p);
                     account.AddNewAccount(new_user);
+                    log.AddRecord(cur_user,"add a new user " + tokens[1]);
                 }
             }
         }
@@ -177,6 +185,7 @@ int main() {
                 else {
                     User old_user = account.GetUser(tokens[1]);
                     account.DeleteAccount(old_user);
+                    log.AddRecord(cur_user,"delete " + tokens[1]);
                 }
             }
         }
@@ -187,6 +196,7 @@ int main() {
             if (cur_user.Privilege < 1) valid = false;
             else if (tokens_size == 1) {
                 repo.ShowAll();
+                log.AddRecord(cur_user,"ask to show all the books");
             }
             else {
                 // 财务记录查询
@@ -196,12 +206,16 @@ int main() {
                         if (tokens_size == 2) {
                             //std::cerr << log.trade_cnt;
                             log.ShowFinance(log.trade_cnt);
+                            log.AddRecord(cur_user,"ask to show financial record");
                         }
                         else {
                             int cnt = log.ComputeCount(tokens[2]);
                             if (cnt < 0 || cnt > log.trade_cnt) valid = false;
                             else if (cnt == 0) std::cout << "\n";
-                            else log.ShowFinance(cnt);
+                            else {
+                                log.ShowFinance(cnt);
+                                log.AddRecord(cur_user,"ask to show financial record");
+                            }
                         }
                     }
                 }
@@ -214,6 +228,7 @@ int main() {
                     else {
                         //std::cerr << index[0] << "\n";
                         repo.PrintExistingBooks(type,index[0]);
+                        log.AddRecord(cur_user,"inquire about "+tokens[1]);
                     }
                 }
             }
@@ -235,6 +250,7 @@ int main() {
                         repo.ChangeInfo(buy_book);
                         std::cout << std::fixed << std::setprecision(2) << charge << "\n";
                         log.NewInOut(charge);
+                        log.AddRecord(cur_user,"buy " + tokens[2] + " books, ISBN= " + tokens[1]);
                     }
                 }
             }
@@ -246,6 +262,7 @@ int main() {
                 if (repo.FindBook(tokens[1]) == true) {
                     cur_select_book = repo.GetABook(tokens[1]);
                     repo.ChangeSelectedBook(cur_select_book);
+                    log.AddRecord(cur_user,"select " + tokens[1]);
                 }
                 else {
                     Book new_book("","","","",0,0);
@@ -253,6 +270,7 @@ int main() {
                     repo.AddNewBook(new_book);
                     cur_select_book = new_book;
                     repo.ChangeSelectedBook(cur_select_book);
+                    log.AddRecord(cur_user,"select " + tokens[1]);
                 }
             }
         }
@@ -312,6 +330,7 @@ int main() {
                     repo.AddNewBook(change_book);
                     repo.ModifySelectedBook(cur_select_book,change_book);
                     cur_select_book = change_book;
+                    log.AddRecord(cur_user,"modify selected book");
                 }
             }
         }
@@ -328,6 +347,7 @@ int main() {
                     cur_select_book.Quantity += q;
                     repo.ChangeInfo(cur_select_book);
                     log.NewInOut((-1) * total_cost);
+                    log.AddRecord(cur_user,"import " + tokens[1] + " selected books with the cost of " + tokens[2]);
                 }
             }
         }
@@ -339,15 +359,16 @@ int main() {
             else if (tokens_size != 2) valid = false;
             else {
                 if (tokens[1] == "finance") {
-
+                    log.ReportFinance();
                 }
                 if (tokens[1] == "employee") {
-
+                    log.ReportEmployee();
                 }
             }
         }
         else if (tokens[0] == "log") {
-
+            if (cur_user.Privilege < 7) valid = false;
+            else log.ShowRecord();
         }
         else valid = false;
 
