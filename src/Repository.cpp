@@ -7,7 +7,7 @@
 #include<vector>
 #include<cmath>
 #include<set>
-Database<std::array<char,20>,Book,1000> isbn_db;// 存放ISBN和Book结构体的映射
+Database<std::array<char,20>,Book,5000> isbn_db;// 存放ISBN和Book结构体的映射
 Database<std::array<char,60>,std::array<char,20>,1000> name_isbn_map;// BookName到ISBN的映射
 Database<std::array<char,60>,std::array<char,20>,1000> author_isbn_map;// Author到ISBN的映射
 Database<std::array<char,60>,std::array<char,20>,1000> keyword_isbn_map;// Keyword到ISBN的映射
