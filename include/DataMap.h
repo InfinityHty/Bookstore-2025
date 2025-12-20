@@ -157,7 +157,7 @@ public:
         Node tmp;
         for (int j = 0; j < node_number; j++) {
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
-            if (cur.index < tmp.min_key) break;
+            //if (cur.index < tmp.min_key) break;
             if (cur.index >= tmp.min_key && cur.index <= tmp.max_key) {
 
                 Content prev[block_size + 1];
@@ -200,7 +200,7 @@ public:
         bool has_value = false;
         for (int j = 0; j < node_number; j++) {
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
-            if (index < tmp.min_key) break;
+            //if (index < tmp.min_key) break;
             if (index >= tmp.min_key && index <= tmp.max_key) {
                 file.seekg(tmp.content_pos);
                 Content cur[block_size + 1];

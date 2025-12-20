@@ -149,7 +149,7 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
         std::array<char,20> isbn_{};
         while (index[cnt] != '\0') isbn_[cnt] = index[cnt],cnt++;
         isbn_db.Find(isbn_);
-        //if (isbn_db.CheckExist(isbn_) == false) std::cout << "\n";
+        if (isbn_db.CheckExist(isbn_) == false) std::cout << "\n";
     }
     else if (type == "name") {
         int cnt = 0;
@@ -162,7 +162,7 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
             isbn_db.Find((*it));
             if (isbn_db.CheckExist((*it)) == true) exist = true;
         }
-        //if (exist == false) std::cout << "\n";
+        if (exist == false) std::cout << "\n";
     }
     else if (type == "author") {
         int cnt = 0;
@@ -175,7 +175,7 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
             isbn_db.Find((*it));
             if (isbn_db.CheckExist((*it)) == true) exist = true;
         }
-        //if (exist == false) std::cout << "\n";
+        if (exist == false) std::cout << "\n";
     }
     else if (type == "keyword") {
         int cnt = 0;
@@ -187,7 +187,7 @@ void Repository::PrintExistingBooks(std::string& type,std::string& index) {
             isbn_db.Find((*it));
             if (isbn_db.CheckExist((*it)) == true) exist = true;
         }
-        //if (exist == false) std::cout << "\n";
+        if (exist == false) std::cout << "\n";
     }
 }
 std::vector<std::string> Repository::MultipleKeywords(std::array<char,60> keyword) {
