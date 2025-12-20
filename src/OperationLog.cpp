@@ -6,7 +6,7 @@
 #include<fstream>
 #include<iostream>
 #include<iomanip>
-MemoryRiver<long double,5000> trade_db;
+MemoryRiver<long double,10000> trade_db;
 
 void OperationLog::Initialize() {
     trade_db.initialise(filename_trade);
