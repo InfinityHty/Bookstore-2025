@@ -151,6 +151,7 @@ public:
     void Delete(T1 index,T2 value){
         index_file.open(index_file_name,std::ios::binary | std::ios::in | std::ios::out);
         file.open(file_name,std::ios::binary | std::ios::in | std::ios::out);
+        index_file.seekg(0,std::ios::beg);
         Content cur;
         cur.index = index;
         cur.value = value;
@@ -171,12 +172,12 @@ public:
                 }
 
                 if (i < tmp.body_size) {
-                    for (;i < tmp.body_size; i++) {
+                    for (;i < tmp.body_size - 1; i++) {
                         prev[i] = prev[i + 1];
                     }
                     tmp.body_size--;
 
-                    if (tmp.max_key == cur.index) tmp.max_key = prev[tmp.body_size - 1].index;
+                    if (tmp.body_size > 0 && tmp.max_key == cur.index) tmp.max_key = prev[tmp.body_size - 1].index;
                     if (tmp.min_key == cur.index) tmp.min_key = prev[0].index;
 
                     file.seekp(tmp.content_pos);
