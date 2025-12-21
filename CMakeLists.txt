@@ -18,4 +18,6 @@ add_executable(code
         src/Account.cpp
         include/OperationLog.h
         src/Book.cpp
-        src/OperationLog.cpp)
+        src/OperationLog.cpp
+        前置作业/增加pre_node的块链.cpp
+        前置作业/旧版的DataMap存档.cpp)

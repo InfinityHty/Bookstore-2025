@@ -20,7 +20,7 @@ private:
     std::fstream file;
     std::fstream index_file;
     std::string index_file_name,file_name;
-    int node_number = 1;// 增加头节点
+    int node_number = 0;
     struct Content {
         T1 index;
         T2 value;
@@ -29,7 +29,6 @@ private:
         T1 max_key,min_key;
         int body_size;
         long long next_node = -1;
-        long long pre_node = -1;
         long long content_pos;
     };
     static bool cmp (const Content &c1,const Content &c2) {
@@ -44,12 +43,7 @@ public:
         index_file_name = index_file_name_;
         file_name = file_name_;
         index_file.open(index_file_name,std::ios::in | std::ios::binary);
-        if (!index_file.good()) {
-            index_file.open(index_file_name,std::ios::out);
-            Node head;
-            head.body_size = 0;
-            index_file.write(reinterpret_cast<char *>(&head),sizeof(Node));
-        }
+        if (!index_file.good()) index_file.open(index_file_name,std::ios::out);
         else {
             index_file.seekg(0,std::ios::end);
             node_number = index_file.tellg() / sizeof(Node);
@@ -134,17 +128,17 @@ public:
         }
 
         if (!flag) {
-            long long cur_pos = index_file.tellg();
-            index_file.seekp(0,std::ios::end);
-            tmp.next_node = index_file.tellp();
-            index_file.seekp(cur_pos - sizeof(Node));
-            index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
-
+            if (node_number > 0) {
+                long long cur_pos = index_file.tellg();
+                index_file.seekp(0,std::ios::end);
+                tmp.next_node = index_file.tellp();
+                index_file.seekp(cur_pos - sizeof(Node));
+                index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            }
             node_number++;
             tmp.max_key = tmp.min_key = index;
             tmp.body_size = 1;
             tmp.next_node = -1;
-            tmp.pre_node = cur_pos - sizeof(Node);
             index_file.seekp(0,std::ios::end);
             tmp.content_pos = index_file.tellp() / sizeof(Node) * sizeof(Content) * block_size;
             index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
@@ -165,7 +159,7 @@ public:
         for (int j = 0; j < node_number; j++) {
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
             //if (cur.index < tmp.min_key) break;
-            if (tmp.body_size != 0 && cur.index >= tmp.min_key && cur.index <= tmp.max_key) {
+            if (cur.index >= tmp.min_key && cur.index <= tmp.max_key) {
 
                 Content prev[block_size + 1];
                 file.seekg(tmp.content_pos);
@@ -182,35 +176,14 @@ public:
                         prev[i] = prev[i + 1];
                     }
                     tmp.body_size--;
-                    // +
-                    if (tmp.body_size == 0) {
-                        Node pre,nex;
-                        index_file.seekg(tmp.pre_node);
-                        index_file.read(reinterpret_cast<char *>(&pre),sizeof(Node));
-                        if (tmp.next_node == -1) {
-                            pre.next_node = -1;
-                            index_file.seekp(tmp.pre_node);
-                            index_file.write(reinterpret_cast<char *>(&pre),sizeof(Node));
-                        }
-                        else {
-                            index_file.seekg(tmp.next_node);
-                            index_file.read(reinterpret_cast<char *>(&nex),sizeof(Node));
-                            pre.next_node = tmp.next_node;
-                            nex.pre_node = tmp.pre_node;
-                            index_file.seekp(tmp.pre_node);
-                            index_file.write(reinterpret_cast<char *>(&pre),sizeof(Node));
-                            index_file.seekp(tmp.next_node);
-                            index_file.write(reinterpret_cast<char *>(&nex),sizeof(Node));
-                        }
-                    }
-                    else {
-                        tmp.max_key = prev[tmp.body_size - 1].index;
-                        tmp.min_key = prev[0].index;
-                        file.seekp(tmp.content_pos);
-                        file.write(reinterpret_cast<char *>(prev),sizeof(Content) * tmp.body_size);
-                        index_file.seekp(-sizeof(Node),std::ios::cur);
-                        index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
-                    }
+
+                    if (tmp.body_size > 0 && tmp.max_key == cur.index) tmp.max_key = prev[tmp.body_size - 1].index;
+                    if (tmp.min_key == cur.index) tmp.min_key = prev[0].index;
+
+                    file.seekp(tmp.content_pos);
+                    file.write(reinterpret_cast<char *>(prev),sizeof(Content) * tmp.body_size);
+                    index_file.seekp(-sizeof(Node),std::ios::cur);
+                    index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
                 }
             }
             if (tmp.next_node == -1) break;
@@ -229,7 +202,7 @@ public:
         for (int j = 0; j < node_number; j++) {
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
             //if (index < tmp.min_key) break;
-            if (tmp.body_size != 0 && index >= tmp.min_key && index <= tmp.max_key) {
+            if (index >= tmp.min_key && index <= tmp.max_key) {
                 file.seekg(tmp.content_pos);
                 Content cur[block_size + 1];
                 file.read(reinterpret_cast<char *>(cur),sizeof(Content) * tmp.body_size);
@@ -257,7 +230,6 @@ public:
         node_number++;
         index_file.seekg(0,std::ios::end);
         new_node.next_node = target.next_node;
-        new_node.pre_node = cur_pos;// +
         target.next_node = index_file.tellg();
         new_node.body_size = target.body_size = block_size / 2;
 

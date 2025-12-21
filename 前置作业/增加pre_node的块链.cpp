@@ -199,7 +199,7 @@ public:
                             nex.pre_node = tmp.pre_node;
                             index_file.seekp(tmp.pre_node);
                             index_file.write(reinterpret_cast<char *>(&pre),sizeof(Node));
-                            index_file.seekp(tmp.next_node);
+                            index_file.seekp(tmp.nex_node);
                             index_file.write(reinterpret_cast<char *>(&nex),sizeof(Node));
                         }
                     }
