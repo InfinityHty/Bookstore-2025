@@ -27,9 +27,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9254a3ac-85f3-4c11-9615-aa80324d4b9e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/DataMap.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/DataMap.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -240,7 +237,7 @@
       <workItem from="1765960774936" duration="2454000" />
       <workItem from="1765966304268" duration="4345000" />
       <workItem from="1765971260073" duration="24169000" />
-      <workItem from="1766238921293" duration="12943000" />
+      <workItem from="1766238921293" duration="13281000" />
     </task>
     <servers />
   </component>
