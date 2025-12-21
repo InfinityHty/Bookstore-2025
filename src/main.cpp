@@ -339,6 +339,7 @@ int main() {
                         }
                         else if (type == "price") {
                             change_book.Price = repo.ComputeCost(index[0]);
+                            if (change_book.Price <= 0) valid = false;
                             has_op.insert(type);
                         }
                     }
