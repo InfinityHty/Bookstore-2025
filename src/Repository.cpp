@@ -62,6 +62,7 @@ void Repository::AddNewBook(Book& book) {
 long double Repository::ComputeCost(std::string cost) {
     int dot_pos = 0,cnt = 0;
     long long price = 0;
+    if (cost[0] == '.' || cost[cost.size() - 1] == '.') return -1; // .10 和 10.都不合法
     while (cost[cnt] != '\0') {
         if (cost[cnt] == '.') {
             dot_pos = cost.size() - 1 - cnt;

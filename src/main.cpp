@@ -54,6 +54,21 @@ int main() {
     repo.LogIn(empty_book);
     while (std::getline(std::cin,instruction)) {
         input << instruction;
+        bool valid = true;
+        for (int i = 0; i < instruction.size(); i++) {
+            if (std::isspace(instruction[i]) && instruction[i] != ' ') {
+                valid = false;
+                break;
+            }
+        }
+        if (!valid) {
+            std::cout << "Invalid\n";
+            input.str("");
+            input.clear();
+            tokens.clear();
+            continue;
+        }
+        // 处理其它非法的空白字符
         //std::cout << instruction << "\n";
         // 账户系统
         // ====================================================
@@ -69,7 +84,7 @@ int main() {
             tokens.clear();
             continue;
         }
-        bool valid = true;
+
         if (tokens[0] == "exit" || tokens[0] == "quit"){
             if(tokens_size != 1) valid = false;
             else exit(0);
@@ -359,7 +374,7 @@ int main() {
 
         // =============================================
         // 日志系统
-        else if (tokens[0] == "report") {
+        /*else if (tokens[0] == "report") {
             if (cur_user.Privilege < 7) valid = false;
             else if (tokens_size != 2) valid = false;
             else {
@@ -374,7 +389,7 @@ int main() {
         else if (tokens[0] == "log") {
             if (cur_user.Privilege < 7) valid = false;
             else log.ShowRecord();
-        }
+        }*/
         else valid = false;
 
         if (valid == false) std::cout << "Invalid\n";
