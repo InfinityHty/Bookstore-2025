@@ -24,6 +24,7 @@ int Repository::ComputeQuantity(std::string quantity) {
         q = q * 10 + (quantity[cnt] - '0');
         cnt++;
     }
+    if (quantity[0] == '0' && q != 0) return -1;// 前导0
     return q;
 }
 bool Repository::FindBook(std::string isbn) {
@@ -76,8 +77,11 @@ long double Repository::ComputeCost(std::string cost) {
             cnt++;
         }
     }
+    if (dot_pos > 2) return -1;// 小数点位数超过2位
     long double ans = price * 1.00000000000000;
     for (int i = 0; i < dot_pos; i++) ans = ans / 10.00000000;
+    if (ans >= 1 && cost[0] == '0') return -1;// 前导0
+    if (ans < 1 && cost[1] != '.') return -1;// 前导0
     return ans;
 }
 // 拆分
