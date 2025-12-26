@@ -242,12 +242,13 @@ int main() {
                     std::string type;
                     std::vector<std::string> index{};
                     repo.Parser(tokens[1],type,index);
-                    if (index.empty()) valid = false;
+                    if (type != "ISBN" && type != "name" && type != "author" && type != "keyword") valid = false;
+                    else if (index.empty()) valid = false;
                     else if (type == "keyword" && index.size() > 1) valid = false;
                     else {
                         //std::cerr << index[0] << "\n";
                         repo.PrintExistingBooks(type,index[0]);
-                        log.AddRecord(cur_user,"inquire about "+tokens[1]);
+                        log.AddRecord(cur_user,"inquire about " + tokens[1]);
                     }
                 }
             }

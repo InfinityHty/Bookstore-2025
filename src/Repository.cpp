@@ -90,10 +90,11 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
         int cnt = 1;
         //std::cerr << line << "\n";
         //type = line;
-        while (line[cnt] != '=') {
+        while (line[cnt] != '=' && line[cnt] != '\0') {
             type.push_back(line[cnt]);
             cnt++;
         }
+        if (line[cnt] != '=') return;
         if (type == "ISBN") {
             cnt++;
             std::string tmp;
