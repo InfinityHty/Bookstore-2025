@@ -243,7 +243,8 @@ int main() {
                     std::string type;
                     std::vector<std::string> index{};
                     repo.Parser(tokens[1],type,index);
-                    if (type != "ISBN" && type != "name" && type != "author" && type != "keyword") valid = false;
+                    if (tokens_size > 2) valid = false;
+                    else if (type != "ISBN" && type != "name" && type != "author" && type != "keyword") valid = false;
                     else if (index.empty()) valid = false;
                     else if (type == "keyword" && index.size() > 1) valid = false;
                     else {
