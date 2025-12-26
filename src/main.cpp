@@ -222,7 +222,8 @@ int main() {
                 if (tokens[1] == "finance") {
                     if (cur_user.Privilege < 7) valid = false;
                     else {
-                        if (tokens_size == 2) {
+                        if (tokens_size > 3) valid = false;
+                        else if (tokens_size == 2) {
                             //std::cerr << log.trade_cnt;
                             log.ShowFinance(log.trade_cnt);
                             log.AddRecord(cur_user,"ask to show financial record");
