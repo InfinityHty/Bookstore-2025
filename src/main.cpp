@@ -90,18 +90,21 @@ int main() {
             else exit(0);
         }
         else if (tokens[0] == "su") {
-            if (tokens_size == 1) valid = false;
+            if (tokens_size < 2 || tokens_size > 3) valid = false;
             else if (account.FindUser(tokens[1]) == false) valid = false;
             else {
                 User new_user = account.GetUser(tokens[1]);
                 if (cur_user.Privilege <= new_user.Privilege && tokens_size == 2) valid = false;
                 else {
                     if (cur_user.Privilege > new_user.Privilege) {
-                        account.LogIn(new_user);
-                        cur_user = new_user;
-                        cur_select_book = empty_book;
-                        repo.LogIn(empty_book);
-                        log.AddRecord(cur_user,"log in");
+                        if (tokens_size == 3 && Change30(tokens[2]) != new_user.Password) valid = false;
+                        else {
+                            account.LogIn(new_user);
+                            cur_user = new_user;
+                            cur_select_book = empty_book;
+                            repo.LogIn(empty_book);
+                            log.AddRecord(cur_user,"log in");
+                        }
                     }
                     else {
                         if (Change30(tokens[2]) == new_user.Password) {
