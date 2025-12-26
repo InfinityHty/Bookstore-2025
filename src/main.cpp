@@ -234,7 +234,7 @@ int main() {
                         else {
                             int cnt = log.ComputeCount(tokens[2]);
                             if (cnt < 0 || cnt > log.trade_cnt) valid = false;
-                            else if (cnt == 0) std::cout << "\n";
+                            //else if (cnt == 0) std::cout << "\n";
                             else {
                                 log.ShowFinance(cnt);
                                 log.AddRecord(cur_user,"ask to show financial record");
