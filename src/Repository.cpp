@@ -24,7 +24,7 @@ int Repository::ComputeQuantity(std::string quantity) {
         q = q * 10 + (quantity[cnt] - '0');
         cnt++;
     }
-    if (quantity[0] == '0' && q != 0) return -1;// 前导0
+    if (quantity[0] == '0' && quantity.size() > 1) return -1;// 前导0
     return q;
 }
 bool Repository::FindBook(std::string isbn) {

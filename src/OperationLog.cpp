@@ -30,7 +30,7 @@ int OperationLog::ComputeCount(std::string input) {
         output = output * 10 + (input[cnt] - '0');
         cnt++;
     }
-    if (input[0] == '0' && output != 0) return -1;// 检查前导0
+    if (input[0] == '0' && input.size() > 1) return -1;// 检查前导0 检查00
     return output;
 }
 void OperationLog::ShowFinance(int cnt) {
