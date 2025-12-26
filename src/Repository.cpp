@@ -101,6 +101,7 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
             if (tmp.size() <= 20) index.push_back(tmp);
         }
         else if (type == "name") {
+            if (line[cnt + 1] != '"') return;
             cnt += 2;
             std::string tmp;
             while (line[cnt] != '"') {
@@ -110,6 +111,7 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
             if (line[cnt + 1] == '\0' && tmp.size() <= 60) index.push_back(tmp);
         }
         else if (type == "author") {
+            if (line[cnt + 1] != '"') return;
             cnt += 2;
             std::string tmp;
             while (line[cnt] != '"') {
@@ -119,6 +121,7 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
             if (line[cnt + 1] == '\0' && tmp.size() <= 60) index.push_back(tmp);
         }
         else if (type == "keyword") {
+            if (line[cnt + 1] != '"') return;
             cnt += 2;
             std::string tmp;
             while (line[cnt] != '"') {
@@ -142,11 +145,12 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
             }
             index.push_back(tmp);
             if (line[cnt + 1] != '\0') index.clear();
-            if (cnt > 69) index.clear();
+            if (cnt > 70) index.clear();
         }
         else if (type == "price") {
             cnt++;
             std::string tmp;
+            //if (line[cnt] == '.' || line[line.size() - 1] == '.') return;
             while (line[cnt] != '\0') {
                 if (line[cnt] < '0' || line[cnt] > '9') {
                     if (line[cnt] != '.') {
