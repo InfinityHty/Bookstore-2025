@@ -213,7 +213,6 @@ int main() {
         }
         // =============================================
         //图书系统
-        // 先按照""中间没有空格处理
         else if (tokens[0] == "show") {
             if (cur_user.Privilege < 1) valid = false;
             else if (tokens_size == 1) {
