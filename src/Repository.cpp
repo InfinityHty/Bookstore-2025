@@ -99,7 +99,7 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
             cnt++;
             std::string tmp;
             while (line[cnt] != '\0') tmp.push_back(line[cnt]),cnt++;
-            if (tmp.size() <= 20) index.push_back(tmp);
+            if (tmp.size() <= 20 && !tmp.empty()) index.push_back(tmp);
         }
         else if (type == "name") {
             if (line[cnt + 1] != '"') return;
@@ -109,7 +109,7 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
                 tmp.push_back(line[cnt]),cnt++;
                 if (line[cnt] == '\0') return;
             }
-            if (line[cnt + 1] == '\0' && tmp.size() <= 60) index.push_back(tmp);
+            if (line[cnt + 1] == '\0' && tmp.size() <= 60 && !tmp.empty()) index.push_back(tmp);
         }
         else if (type == "author") {
             if (line[cnt + 1] != '"') return;
@@ -119,7 +119,7 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
                 tmp.push_back(line[cnt]),cnt++;
                 if (line[cnt] == '\0') return;
             }
-            if (line[cnt + 1] == '\0' && tmp.size() <= 60) index.push_back(tmp);
+            if (line[cnt + 1] == '\0' && tmp.size() <= 60 && !tmp.empty()) index.push_back(tmp);
         }
         else if (type == "keyword") {
             if (line[cnt + 1] != '"') return;
@@ -143,6 +143,10 @@ void Repository::Parser(std::string line,std::string& type,std::vector<std::stri
                     tmp.push_back(line[cnt]);
                     cnt++;
                 }
+            }
+            if (tmp.empty()) {
+                index.clear();
+                return;
             }
             index.push_back(tmp);
             if (line[cnt + 1] != '\0') index.clear();

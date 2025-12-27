@@ -224,17 +224,16 @@ int main() {
                 // 财务记录查询
                 if (tokens[1] == "finance") {
                     if (cur_user.Privilege < 7) valid = false;
+                    else if (tokens_size > 3) valid = false;
                     else {
-                        if (tokens_size > 3) valid = false;
-                        else if (tokens_size == 2) {
-                            //std::cerr << log.trade_cnt;
+                        if (tokens_size == 2) {
                             log.ShowFinance(log.trade_cnt);
                             log.AddRecord(cur_user,"ask to show financial record");
                         }
                         else {
                             int cnt = log.ComputeCount(tokens[2]);
                             if (cnt < 0 || cnt > log.trade_cnt) valid = false;
-                            //else if (cnt == 0) std::cout << "\n";
+                            else if (cnt == 0) std::cout << "\n";
                             else {
                                 log.ShowFinance(cnt);
                                 log.AddRecord(cur_user,"ask to show financial record");
@@ -251,7 +250,6 @@ int main() {
                     else if (index.empty()) valid = false;
                     else if (type == "keyword" && index.size() > 1) valid = false;
                     else {
-                        //std::cerr << index[0] << "\n";
                         repo.PrintExistingBooks(type,index[0]);
                         log.AddRecord(cur_user,"inquire about " + tokens[1]);
                     }
