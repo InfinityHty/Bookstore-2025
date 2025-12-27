@@ -66,6 +66,7 @@ void OperationLog::AddRecord(User user,std::string instruction) {
     logfile.close();
 }
 void OperationLog::ShowRecord() {
+    std::cout << "==========Operation Log==========\n";
     fstream logfile;
     logfile.open("log.txt",std::ios::binary | std::ios::in);
     logfile.seekg(0,std::ios::beg);
@@ -75,13 +76,16 @@ void OperationLog::ShowRecord() {
         int cnt = 0;
         User tmp_user = all_record[i].user;
         std::array<char,100> tmp_operation = all_record[i].operation;
-        while (tmp_user.UserID[cnt] != '\0') std::cout << tmp_user.UserID[cnt++];
-        std::cout << " " << "[" << tmp_user.Privilege << "]: ";
+        if (tmp_user.UserID[0] != '\0') {
+            while (tmp_user.UserID[cnt] != '\0') std::cout << tmp_user.UserID[cnt++];
+            std::cout << " " << "[" << tmp_user.Privilege << "]: ";
+        }
         cnt = 0;
         while (tmp_operation[cnt] != '\0') std::cout << tmp_operation[cnt++];
         std::cout << "\n";
     }
     logfile.close();
+    std::cout << "==========End of Log==========\n";
 }
 void OperationLog::ReportFinance() {
     for (int i = 1; i <= trade_cnt; i++) {

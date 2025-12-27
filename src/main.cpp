@@ -48,6 +48,8 @@ int main() {
     std::string instruction;
     std::vector<std::string> tokens;
     User cur_user;
+    User empty_user("","","",0);
+    log.AddRecord(empty_user,"Bookstore starts to operate!");
     Book cur_select_book;
     Book empty_book("","","","",0,0);
     cur_user.Privilege = 0;
@@ -87,7 +89,10 @@ int main() {
 
         if (tokens[0] == "exit" || tokens[0] == "quit"){
             if(tokens_size != 1) valid = false;
-            else exit(0);
+            else {
+                log.AddRecord(empty_user,"Exit Bookstore");
+                exit(0);
+            }
         }
         else if (tokens[0] == "su") {
             if (tokens_size < 2 || tokens_size > 3) valid = false;
@@ -140,7 +145,7 @@ int main() {
             else {
                 User new_user(tokens[1],tokens[3],tokens[2],1);
                 account.AddNewAccount(new_user);
-                log.AddRecord(new_user,"register");
+                log.AddRecord(new_user,"register an account");
             }
         }
         else if (tokens[0] == "passwd") {
@@ -184,7 +189,7 @@ int main() {
         else if (tokens[0] == "useradd") {
             if (cur_user.Privilege < 3) valid = false;
             if (tokens_size != 5) valid = false;
-            else if (account.ValidCheck(tokens[1]) == false || account.ValidCheck(tokens[2]) == false || tokens[5].size() > 30) valid = false;
+            else if (account.ValidCheck(tokens[1]) == false || account.ValidCheck(tokens[2]) == false || tokens[4].size() > 30) valid = false;
             else if (account.FindUser(tokens[1]) == true) valid = false;
             else {
                 std::string privilege = tokens[3];
@@ -194,7 +199,7 @@ int main() {
                 else {
                     User new_user(tokens[1],tokens[4],tokens[2],p);
                     account.AddNewAccount(new_user);
-                    log.AddRecord(cur_user,"add a new user " + tokens[1]);
+                    log.AddRecord(cur_user,"add a new user with UserID = " + tokens[1]);
                 }
             }
         }
@@ -207,7 +212,7 @@ int main() {
                 else {
                     User old_user = account.GetUser(tokens[1]);
                     account.DeleteAccount(old_user);
-                    log.AddRecord(cur_user,"delete " + tokens[1]);
+                    log.AddRecord(cur_user,"delete an account with UserID = " + tokens[1]);
                 }
             }
         }
@@ -227,7 +232,7 @@ int main() {
                     else {
                         if (tokens_size == 2) {
                             log.ShowFinance(log.trade_cnt);
-                            log.AddRecord(cur_user,"ask to show financial record");
+                            log.AddRecord(cur_user,"ask to show all financial records");
                         }
                         else {
                             int cnt = log.ComputeCount(tokens[2]);
@@ -235,7 +240,7 @@ int main() {
                             else if (cnt == 0) std::cout << "\n";
                             else {
                                 log.ShowFinance(cnt);
-                                log.AddRecord(cur_user,"ask to show financial record");
+                                log.AddRecord(cur_user,"ask to show the latest " + tokens[2] + " financial records");
                             }
                         }
                     }
@@ -250,7 +255,7 @@ int main() {
                     else if (type == "keyword" && index.size() > 1) valid = false;
                     else {
                         repo.PrintExistingBooks(type,index[0]);
-                        log.AddRecord(cur_user,"inquire about " + tokens[1]);
+                        log.AddRecord(cur_user,"inquire about books with " + tokens[1]);
                     }
                 }
             }
@@ -272,7 +277,7 @@ int main() {
                         repo.ChangeInfo(buy_book);
                         std::cout << std::fixed << std::setprecision(2) << charge << "\n";
                         log.NewInOut(charge);
-                        log.AddRecord(cur_user,"buy " + tokens[2] + " books, ISBN= " + tokens[1]);
+                        log.AddRecord(cur_user,"buy " + tokens[2] + " books with ISBN = " + tokens[1]);
                     }
                 }
             }
@@ -284,7 +289,7 @@ int main() {
                 if (repo.FindBook(tokens[1]) == true) {
                     cur_select_book = repo.GetABook(tokens[1]);
                     repo.ChangeSelectedBook(cur_select_book);
-                    log.AddRecord(cur_user,"select " + tokens[1]);
+                    log.AddRecord(cur_user,"select a book with ISBN = " + tokens[1]);
                 }
                 else {
                     Book new_book("","","","",0,0);
@@ -292,7 +297,7 @@ int main() {
                     repo.AddNewBook(new_book);
                     cur_select_book = new_book;
                     repo.ChangeSelectedBook(cur_select_book);
-                    log.AddRecord(cur_user,"select " + tokens[1]);
+                    log.AddRecord(cur_user,"select a book with ISBN = " + tokens[1]);
                 }
             }
         }
@@ -378,7 +383,7 @@ int main() {
 
         // =============================================
         // 日志系统
-        /*else if (tokens[0] == "report") {
+        else if (tokens[0] == "report") {
             if (cur_user.Privilege < 7) valid = false;
             else if (tokens_size != 2) valid = false;
             else {
@@ -393,7 +398,7 @@ int main() {
         else if (tokens[0] == "log") {
             if (cur_user.Privilege < 7) valid = false;
             else log.ShowRecord();
-        }*/
+        }
         else valid = false;
 
         if (valid == false) std::cout << "Invalid\n";
