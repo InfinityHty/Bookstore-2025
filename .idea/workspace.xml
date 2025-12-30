@@ -26,12 +26,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9254a3ac-85f3-4c11-9615-aa80324d4b9e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/前置作业/test.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/前置作业/Bookstore-2025文件存储测试.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/前置作业/Bookstore-2025文件存储测试.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/前置作业/增加pre_node的块链.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/前置作业/增加pre_node的块链.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="9254a3ac-85f3-4c11-9615-aa80324d4b9e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -197,7 +192,7 @@
       <workItem from="1767055352063" duration="7335000" />
       <workItem from="1767096599171" duration="3648000" />
       <workItem from="1767103993987" duration="2000" />
-      <workItem from="1767104838591" duration="10000" />
+      <workItem from="1767104838591" duration="330000" />
     </task>
     <servers />
   </component>
