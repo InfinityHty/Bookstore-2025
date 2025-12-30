@@ -382,7 +382,7 @@ int main() {
 
         // =============================================
         // 日志系统
-        else if (tokens[0] == "report") {
+        /*else if (tokens[0] == "report") {
             if (cur_user.Privilege < 7) valid = false;
             else if (tokens_size != 2) valid = false;
             else {
@@ -397,7 +397,7 @@ int main() {
         else if (tokens[0] == "log") {
             if (cur_user.Privilege < 7) valid = false;
             else log.ShowRecord();
-        }
+        }*/
         else valid = false;
 
         if (valid == false) std::cout << "Invalid\n";
