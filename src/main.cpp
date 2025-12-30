@@ -270,7 +270,6 @@ int main() {
                 else {
                     Book buy_book = repo.GetABook(tokens[1]);
                     if (buy_book.Quantity < q) valid = false;
-                    // 如果一本书库存为0要不要删掉？ No
                     else {
                         long double charge = 1.0000 * q * buy_book.Price;
                         buy_book.Quantity -= q;
