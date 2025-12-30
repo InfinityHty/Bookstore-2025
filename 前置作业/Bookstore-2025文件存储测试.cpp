@@ -1,6 +1,3 @@
-//
-// Created by HTY on 2025/12/5.
-//
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -10,12 +7,13 @@
 #include<map>
 #include<vector>
 template <class T1,class T2,int block_size = 1>
+// 基于块状链表存储的Map类模板
 class Database {
 private:
     std::fstream file;
     std::fstream index_file;
-    //std::map<T1,std::vector<T2>> buffer;
-    int node_number = 0;
+    std::string index_file_name,file_name;
+    int node_number = 1;// 增加头节点
     struct Content {
         T1 index;
         T2 value;
@@ -24,6 +22,7 @@ private:
         T1 max_key,min_key;
         int body_size;
         long long next_node = -1;
+        long long pre_node = -1;
         long long content_pos;
     };
     static bool cmp (const Content &c1,const Content &c2) {
@@ -34,28 +33,34 @@ private:
         }
     }
 public:
-    void initialize() {
-        index_file.open("index.txt",std::ios::in | std::ios::binary);
-        if (!index_file.good()) index_file.open("index.txt",std::ios::out);
+    void Initialize(std::string& index_file_name_,std::string& file_name_) {
+        index_file_name = index_file_name_;
+        file_name = file_name_;
+        index_file.open(index_file_name,std::ios::in | std::ios::binary);
+        if (!index_file.good()) {
+            index_file.open(index_file_name,std::ios::out);
+            Node head;
+            head.body_size = 0;
+            index_file.write(reinterpret_cast<char *>(&head),sizeof(Node));
+        }
         else {
             index_file.seekg(0,std::ios::end);
             node_number = index_file.tellg() / sizeof(Node);
         }
-        file.open("map.txt",std::ios::in | std::ios::binary);
-        if (!file.good()) file.open("map.txt",std::ios::out);
+        file.open(file_name,std::ios::in | std::ios::binary);
+        if (!file.good()) file.open(file_name,std::ios::out);
         index_file.close();
         file.close();
     }
     void Insert(T1 index,T2 value) {
-        index_file.open("index.txt",std::ios::binary | std::ios::in | std::ios::out);
-        file.open("map.txt",std::ios::binary | std::ios::in | std::ios::out);
+        index_file.open(index_file_name,std::ios::binary | std::ios::in | std::ios::out);
+        file.open(file_name,std::ios::binary | std::ios::in | std::ios::out);
         index_file.seekg(0,std::ios::beg);
         Content cur;
         cur.index = index;
         cur.value = value;
         Node tmp,next_tmp;
         bool flag = false;
-        //std::cerr << node_number << "\n";
         for (int i = 0; i < node_number; i++){
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
             if (tmp.next_node != -1) {
@@ -89,9 +94,7 @@ public:
                 }
 
                 if (cur.index < tmp.min_key) tmp.min_key = cur.index;
-                //std::cerr << cur.value << " " << tmp.body_size << "\n";
-                /*prev[tmp.body_size] = cur;
-                std::sort(prev,prev + tmp.body_size + 1,cmp);*/
+
                 int id = 0;
                 if (cmp(cur,prev[0])) id = -1;
                 else {
@@ -107,7 +110,7 @@ public:
                 }
                 prev[id + 1] = cur;
                 tmp.body_size++;
-                //std::cerr << tmp.body_size << "\n";
+
                 file.write(reinterpret_cast<char *>(prev),sizeof(Content) * tmp.body_size);
 
                 index_file.seekp(-sizeof(Node),std::ios::cur);
@@ -124,22 +127,20 @@ public:
         }
 
         if (!flag) {
-            if (node_number > 0) {
-                long long cur_pos = index_file.tellg();
-                index_file.seekp(0,std::ios::end);
-                tmp.next_node = index_file.tellp();
-                index_file.seekp(cur_pos - sizeof(Node));
-                index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
-            }
+            long long cur_pos = index_file.tellg();
+            index_file.seekp(0,std::ios::end);
+            tmp.next_node = index_file.tellp();
+            index_file.seekp(cur_pos - sizeof(Node));
+            index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
+
             node_number++;
             tmp.max_key = tmp.min_key = index;
             tmp.body_size = 1;
             tmp.next_node = -1;
+            tmp.pre_node = cur_pos - sizeof(Node);
             index_file.seekp(0,std::ios::end);
             tmp.content_pos = index_file.tellp() / sizeof(Node) * sizeof(Content) * block_size;
-            //std::cerr << tmp.content_pos << "\n";
             index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
-            //file.open("map.txt",std::ios::binary | std::ios::out | std::ios::in);
             file.seekp(tmp.content_pos);
             file.write(reinterpret_cast<char *>(&cur),sizeof(Content));
         }
@@ -147,24 +148,23 @@ public:
         file.close();
     }
     void Delete(T1 index,T2 value){
-        index_file.open("index.txt",std::ios::binary | std::ios::in | std::ios::out);
-        file.open("map.txt",std::ios::binary | std::ios::in | std::ios::out);
+        index_file.open(index_file_name,std::ios::binary | std::ios::in | std::ios::out);
+        file.open(file_name,std::ios::binary | std::ios::in | std::ios::out);
+        index_file.seekg(0,std::ios::beg);
         Content cur;
         cur.index = index;
         cur.value = value;
-        Node tmp,pre_tmp;
-        long long pre_pos = 0;
+        Node tmp;
         for (int j = 0; j < node_number; j++) {
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
-            if (cur.index < tmp.min_key) break;
-            if (cur.index >= tmp.min_key && cur.index <= tmp.max_key) {
-                //file.open("map.txt",std::ios::binary | std::ios::out | std::ios::in);
+            //if (cur.index < tmp.min_key) break;
+            if (tmp.body_size != 0 && cur.index >= tmp.min_key && cur.index <= tmp.max_key) {
+
                 Content prev[block_size + 1];
                 file.seekg(tmp.content_pos);
                 file.read(reinterpret_cast<char *>(prev),sizeof(Content) * tmp.body_size);
                 int i = 0;
                 for (; i < tmp.body_size; i++) {
-                    //std::cerr << prev[i].value << "\n";
                     if (prev[i].index == cur.index && prev[i].value == cur.value) {
                         break;
                     }
@@ -175,24 +175,38 @@ public:
                         prev[i] = prev[i + 1];
                     }
                     tmp.body_size--;
-                    /*if (tmp.body_size == 0 && pre_pos != 0) {
-                        pre_tmp.next_node = tmp.next_node;
-                        index_file.seekp(pre_pos - sizeof(Node));
-                        index_file.write(reinterpret_cast<char *>(&pre_tmp),sizeof(Node));
-                    }*/
-                    if (tmp.max_key == cur.index) tmp.max_key = prev[tmp.body_size - 1].index;
-                    if (tmp.min_key == cur.index) tmp.min_key = prev[0].index;
-
-                    file.seekp(tmp.content_pos);
-                    file.write(reinterpret_cast<char *>(prev),sizeof(Content) * tmp.body_size);
-                    index_file.seekp(-sizeof(Node),std::ios::cur);
-                    index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
+                    // +
+                    if (tmp.body_size == 0) {
+                        Node pre,nex;
+                        index_file.seekg(tmp.pre_node);
+                        index_file.read(reinterpret_cast<char *>(&pre),sizeof(Node));
+                        if (tmp.next_node == -1) {
+                            pre.next_node = -1;
+                            index_file.seekp(tmp.pre_node);
+                            index_file.write(reinterpret_cast<char *>(&pre),sizeof(Node));
+                        }
+                        else {
+                            index_file.seekg(tmp.next_node);
+                            index_file.read(reinterpret_cast<char *>(&nex),sizeof(Node));
+                            pre.next_node = tmp.next_node;
+                            nex.pre_node = tmp.pre_node;
+                            index_file.seekp(tmp.pre_node);
+                            index_file.write(reinterpret_cast<char *>(&pre),sizeof(Node));
+                            index_file.seekp(tmp.nex_node);
+                            index_file.write(reinterpret_cast<char *>(&nex),sizeof(Node));
+                        }
+                    }
+                    else {
+                        tmp.max_key = prev[tmp.body_size - 1].index;
+                        tmp.min_key = prev[0].index;
+                        file.seekp(tmp.content_pos);
+                        file.write(reinterpret_cast<char *>(prev),sizeof(Content) * tmp.body_size);
+                        index_file.seekp(-sizeof(Node),std::ios::cur);
+                        index_file.write(reinterpret_cast<char *>(&tmp),sizeof(Node));
+                    }
                 }
-                //file.close();
             }
             if (tmp.next_node == -1) break;
-            pre_tmp = tmp;
-            pre_pos = index_file.tellg();
             index_file.seekg(tmp.next_node,std::ios::beg);
         }
         index_file.close();
@@ -200,38 +214,33 @@ public:
     }
     // 要考虑一个index被拆到不同块的情况
     void Find(T1 index) {
-        index_file.open("index.txt",std::ios::binary | std::ios::in);
-        file.open("map.txt",std::ios::binary | std::ios::in);
+        index_file.open(index_file_name,std::ios::binary | std::ios::in);
+        file.open(file_name,std::ios::binary | std::ios::in);
         index_file.seekg(0,std::ios::beg);
         Node tmp;
         bool has_value = false;
-        //std::cerr << node_number << std::endl;
         for (int j = 0; j < node_number; j++) {
             index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
-            //std::cerr << tmp.content_pos << "\n";
-            if (index < tmp.min_key) break;
-            if (index >= tmp.min_key && index <= tmp.max_key) {
-                //file.open("map.txt",std::ios::binary | std::ios::in);
+            //if (index < tmp.min_key) break;
+            if (tmp.body_size != 0 && index >= tmp.min_key && index <= tmp.max_key) {
                 file.seekg(tmp.content_pos);
                 Content cur[block_size + 1];
                 file.read(reinterpret_cast<char *>(cur),sizeof(Content) * tmp.body_size);
 
                 for (int i = 0; i < tmp.body_size; i++) {
-                    //std::cerr << cur[i].value << "\n";
                     if (cur[i].index == index) {
                         has_value = true;
-                        std::cout << cur[i].value << " ";
+                        std::cout << cur[i].value;
                     }
                 }
-                //file.close();
             }
             if (tmp.next_node == -1) break;
             index_file.seekg(tmp.next_node,std::ios::beg);
         }
         if (!has_value) {
-            std::cout << "null";
+            //std::cout << "null";
         }
-        std::cout << "\n";
+        //std::cout << "\n";
         index_file.close();
         file.close();
     }
@@ -239,14 +248,13 @@ public:
     void SplitBlock(Node target,long long cur_pos) {
         Node new_node;
         node_number++;
-        //index_file.open("index.txt",std::ios::binary | std::ios::in | std::ios::out);
         index_file.seekg(0,std::ios::end);
         new_node.next_node = target.next_node;
+        new_node.pre_node = cur_pos;// +
         target.next_node = index_file.tellg();
         new_node.body_size = target.body_size = block_size / 2;
 
         Content origin_content[block_size + 1],new_content[block_size + 1];
-        //file.open("map.txt",std::ios::binary | std::ios::in | std::ios::out);
         file.seekg(target.content_pos);
         file.read(reinterpret_cast<char *>(origin_content),sizeof(Content) * block_size);
         new_node.max_key = target.max_key;
@@ -263,17 +271,142 @@ public:
 
         for (int i = 0; i < block_size / 2; i++) {
             new_content[i] = origin_content[i + block_size / 2];
-            //std::cerr << new_content[i].value << "\n";
         }
         file.seekp(new_node.content_pos);
         file.write(reinterpret_cast<char *>(new_content),sizeof(Content) * block_size);
+    }
+    // 适用于账户管理系统 获取UserID的对应用户信息
+    T2 GetValue(T1 index) {
+        index_file.open(index_file_name,std::ios::binary | std::ios::in);
+        file.open(file_name,std::ios::binary | std::ios::in);
+        index_file.seekg(0,std::ios::beg);
+        Node tmp;
+        for (int i = 0; i < node_number; i++) {
+            index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            //if (index < tmp.min_key) break;
+            if (index >= tmp.min_key && index <= tmp.max_key) {
+                file.seekg(tmp.content_pos);
+                Content cur[block_size + 1];
+                file.read(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+                for (int j = 0; j < tmp.body_size; j++) {
+                    if (cur[j].index == index) {
+                        index_file.close();
+                        file.close();
+                        return cur[j].value;
+                    }
+                }
+            }
+            if (tmp.next_node == -1) break;
+            index_file.seekg(tmp.next_node);
+        }
+    }
+    // 适用于账户管理系统 检查UserID是否存在
+    bool CheckExist(T1 index) {
+        index_file.open(index_file_name,std::ios::binary | std::ios::in);
+        file.open(file_name,std::ios::binary | std::ios::in);
+        index_file.seekg(0,std::ios::beg);
+        Node tmp;
+        for (int i = 0; i < node_number; i++) {
+            index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            //if (index < tmp.min_key) break;
+            if (index >= tmp.min_key && index <= tmp.max_key) {
+                file.seekg(tmp.content_pos);
+                Content cur[block_size + 1];
+                file.read(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+                for (int j = 0; j < tmp.body_size; j++) {
+                    if (cur[j].index == index) {
+                        index_file.close();
+                        file.close();
+                        return true;
+                    }
+                }
+            }
+            if (tmp.next_node == -1) break;
+            index_file.seekg(tmp.next_node);
+        }
+        index_file.close();
+        file.close();
+        return false;
+    }
+    // 适用于账户管理系统修改密码 书籍管理系统修改Price和Quantity
+    void ChangeInfo(T1 index,T2 new_value) {
+        index_file.open(index_file_name,std::ios::binary | std::ios::in | std::ios::out);
+        file.open(file_name,std::ios::binary | std::ios::in | std::ios::out);
+        index_file.seekg(0,std::ios::beg);
+        Node tmp;
+        for (int i = 0; i < node_number; i++) {
+            index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            //if (index < tmp.min_key) break;
+            if (index >= tmp.min_key && index <= tmp.max_key) {
+                file.seekg(tmp.content_pos);
+                Content cur[block_size + 1];
+                file.read(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+                for (int j = 0; j < tmp.body_size; j++) {
+                    if (cur[j].index == index) {
+                        cur[j].value = new_value;
+                        //break;
+                    }
+                }
+                file.seekp(tmp.content_pos);
+                file.write(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+            }
+            if (tmp.next_node == -1) break;
+            index_file.seekg(tmp.next_node);
+        }
+        index_file.close();
+        file.close();
+    }
+    // 适用于书籍管理系统
+    // 显示所有书籍
+    void ShowAll() {
+        index_file.open(index_file_name,std::ios::binary | std::ios::in);
+        file.open(file_name,std::ios::binary | std::ios::in);
+        index_file.seekg(0,std::ios::beg);
+        Node tmp;
+        for (int i = 0; i < node_number; i++) {
+            index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            file.seekg(tmp.content_pos);
+            Content cur[block_size + 1];
+            file.read(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+            for (int j = 0; j < tmp.body_size; j++) {
+                std::cout << cur[j].value;
+            }
+            if (tmp.next_node == -1) break;
+            index_file.seekg(tmp.next_node);
+        }
+        index_file.close();
+        file.close();
+    }
+    // 返回包含所有符合待查询index的value组成的vector
+    std::vector<T2> ReturnValues(T1 index) {
+        index_file.open(index_file_name,std::ios::binary | std::ios::in);
+        file.open(file_name,std::ios::binary | std::ios::in);
+        std::vector<T2> corresponding;
+        Node tmp;
+        for (int i = 0; i < node_number; i++) {
+            index_file.read(reinterpret_cast<char *>(&tmp),sizeof(Node));
+            //if (index < tmp.min_key) break;
+            if (index >= tmp.min_key && index <= tmp.max_key) {
+                file.seekg(tmp.content_pos);
+                Content cur[block_size + 1];
+                file.read(reinterpret_cast<char *>(cur),tmp.body_size * sizeof(Content));
+                for (int j = 0; j < tmp.body_size; j++) {
+                    if (cur[j].index == index) corresponding.push_back(cur[j].value);
+                }
+            }
+            if (tmp.next_node == -1) break;
+            index_file.seekg(tmp.next_node);
+        }
+        index_file.close();
+        file.close();
+        return corresponding;
     }
 };
 int main() {
     //std::ios::sync_with_stdio(false);
     //std::cin.tie(nullptr);
     int n;
-    Database<std::array<char,65>,int,4> db;
+    Database<std::array<char,65>,int,50> db;
     db.initialize();
     std::cin >> n;
     for (int i = 0; i < n; i++) {
